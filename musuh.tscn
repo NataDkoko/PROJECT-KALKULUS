@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://jirqx5jjco1s"]
+
+[ext_resource type="Script" uid="uid://bh4h0ktghtxrv" path="res://musuh.gd" id="1_5xx5t"]
+[ext_resource type="Texture2D" uid="uid://8qnhmhjlpjku" path="res://icon.svg" id="2_mgojx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgojx"]
+size = Vector2(117, 114)
+
+[node name="musuh" type="CharacterBody2D" unique_id=719829037]
+script = ExtResource("1_5xx5t")
+speed = 150.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=712683039]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_mgojx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=42407270]
+position = Vector2(2.5, -1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_mgojx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1516102335]

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bwuo7fslti7w5"]
+
+[ext_resource type="Script" uid="uid://dgsqdjckf3tj5" path="res://peluru_api.gd" id="1_daid6"]
+[ext_resource type="Texture2D" uid="uid://7ryglts6wcoq" path="res://asset/weapon_effect/shot_round.png" id="1_hkexe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daid6"]
+atlas = ExtResource("1_hkexe")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8e21"]
+atlas = ExtResource("1_hkexe")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jljf0"]
+atlas = ExtResource("1_hkexe")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g8j3"]
+atlas = ExtResource("1_hkexe")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_db8y6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daid6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8e21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jljf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8j3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="PeluruApi" type="Area2D" unique_id=543294342]
+z_index = 10
+script = ExtResource("1_daid6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2132770906]
+position = Vector2(-2, 1)
+scale = Vector2(2.375, 2.25)
+sprite_frames = SubResource("SpriteFrames_db8y6")
+autoplay = "default"
+frame_progress = 0.67422473
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601807487]
