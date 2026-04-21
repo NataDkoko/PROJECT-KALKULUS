@@ -11,13 +11,14 @@ script = ExtResource("1_vhb2g")
 peluru_scene = ExtResource("2_vq72m")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=235513062]
+texture_filter = 1
 position = Vector2(8.999985, 0)
 scale = Vector2(1.6796879, 1.5234374)
 texture = ExtResource("1_uflv4")
 
 [node name="TitikTembak" type="Marker2D" parent="." unique_id=1534087637]
 z_index = 5
-position = Vector2(40, 0)
+position = Vector2(39, -4)
 
 [node name="TimerTembak" type="Timer" parent="." unique_id=1450312531]
 wait_time = 0.2

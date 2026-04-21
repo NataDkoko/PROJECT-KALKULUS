@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var speed: float = 200.0
+@export var speed: float = 500.0
+@onready var anim = $AnimatedSprite2D
 
 func _physics_process(_delta):
 	var direction = Vector2.ZERO
@@ -10,6 +11,15 @@ func _physics_process(_delta):
 
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
+		anim.play("walk_right")
+	else:
+		anim.play("idle")
+
+	# Flip kiri-kanan
+	if direction.x != 0:
+		anim.flip_h = direction.x < 0
+		
+		
 
 	velocity = direction * speed
 	move_and_slide()
