@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bh2p48i7g7l6f" path="res://asset/Weapon/GUN_01_[square_frame]_01_V1.00.png" id="1_uflv4"]
 [ext_resource type="Script" uid="uid://bsimcltvcgjx4" path="res://senjata.gd" id="1_vhb2g"]
 [ext_resource type="PackedScene" uid="uid://bwuo7fslti7w5" path="res://peluru_api.tscn" id="2_vq72m"]
+[ext_resource type="AudioStream" uid="uid://ds7tivv65shnf" path="res://asset/sfx/mrfriends-pistol-shot-233473.mp3" id="4_lo5yu"]
 
 [node name="Senjata" type="Node2D" unique_id=205472675]
 z_index = 10
@@ -21,5 +22,10 @@ z_index = 5
 position = Vector2(39, -4)
 
 [node name="TimerTembak" type="Timer" parent="." unique_id=1450312531]
-wait_time = 0.2
 one_shot = true
+
+[node name="TembakSFX" type="AudioStreamPlayer2D" parent="." unique_id=398537285]
+stream = ExtResource("4_lo5yu")
+volume_db = -7.542
+max_polyphony = 20
+panning_strength = 0.62
