@@ -30,3 +30,10 @@ func tembak():
 			$TimerTembak.start()
 		else:
 			print("PERINGATAN: Kamu belum memasukkan file peluru_api.tscn ke kolom Inspector Senjata!")	
+# ... kodinganmu untuk memunculkan peluru ...
+	var peluru = peluru_scene.instantiate()
+	get_tree().root.add_child(peluru)
+	
+	# TAMBAHKAN BARIS INI:
+	$TembakSFX.pitch_scale = randf_range(0.9, 1.1)
+	$TembakSFX.play()
