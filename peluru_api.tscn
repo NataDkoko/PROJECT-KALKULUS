@@ -44,15 +44,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_daid6"]
+radius = 6.0
+
 [node name="PeluruApi" type="Area2D" unique_id=543294342]
 z_index = 10
 script = ExtResource("1_daid6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2132770906]
+texture_filter = 1
 position = Vector2(-2, 1)
 scale = Vector2(2.375, 2.25)
 sprite_frames = SubResource("SpriteFrames_db8y6")
 autoplay = "default"
-frame_progress = 0.67422473
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601807487]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_daid6")
