@@ -1,25 +1,113 @@
 extends CharacterBody2D
 
 @export var speed: float = 120.0
+@export var acceleration: float = 6.0
+@export var detection_range: float = 300.0
+@export var max_health: int = 100  # Darah maksimal musuh
 
+var current_health: int
 var player: Node2D
 var agent: NavigationAgent2D
+var can_see_player: bool = false
+var is_dead: bool = false # Status apakah musuh masih hidup
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
+	current_health = max_health # Set darah saat baru mulai
 	player = get_parent().get_node("Player")
 	agent = $NavigationAgent2D
+	
+	agent.path_desired_distance = 4.0
+	agent.target_desired_distance = 2.0
 
 func _physics_process(delta):
+	# Kalau musuhnya udah mati, stop semua pergerakan dan kode di bawahnya
+	if is_dead:
+		return 
+
 	if player and agent:
-		# 🎯 update target tiap frame
-		agent.target_position = player.global_position
+		check_visibility()
 
-		# ambil titik jalur berikutnya
-		var next_pos = agent.get_next_path_position()
+		if can_see_player:
+			if agent.target_position.distance_to(player.global_position) > 5:
+				agent.target_position = player.global_position
 
-		# arah ke titik itu
-		var direction = (next_pos - global_position).normalized()
+			var direction = Vector2.ZERO
 
-		velocity = direction * speed
+			if not agent.is_navigation_finished():
+				var next_pos = agent.get_next_path_position()
+				direction = (next_pos - global_position).normalized()
+			else:
+				direction = (player.global_position - global_position).normalized()
 
-	move_and_slide()
+			var target_velocity = direction * speed
+			velocity = velocity.lerp(target_velocity, acceleration * delta)
+
+		else:
+			velocity = velocity.lerp(Vector2.ZERO, acceleration * delta)
+
+		move_and_slide()
+		update_animation()
+
+func check_visibility():
+	var dist = global_position.distance_to(player.global_position)
+	
+	if dist > detection_range:
+		can_see_player = false
+		return
+
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, player.global_position)
+	query.exclude = [self.get_rid()]
+	
+	var result = space_state.intersect_ray(query)
+	
+	if result and result.collider == player:
+		can_see_player = true
+	else:
+		can_see_player = false
+
+# Fungsi untuk menerima damage dari peluru
+func take_damage(amount: int):
+	if is_dead: 
+		return # Kalau udah mati, gak usah kena damage lagi
+
+	current_health -= amount
+	print("Musuh kena hit! Darah sisa: ", current_health) # Buat ngecek di output
+	
+	if current_health <= 0:
+		die()
+
+# Fungsi untuk proses mati
+func die():
+	is_dead = true
+	velocity = Vector2.ZERO # Berhenti bergerak
+	
+	# Matikan tabrakan biar player gak nabrak "mayat" musuh
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+	# Mainkan animasi mati
+	sprite.play("mati") 
+	
+	# Tunggu sampai animasi mati selesai dimainkan, baru hapus musuh dari game
+	await sprite.animation_finished
+	queue_free() 
+
+func update_animation():
+	if is_dead:
+		return # Jangan update animasi lari/diam kalau lagi proses mati
+
+	var speed_now = velocity.length()
+
+	if speed_now > 5:
+		if sprite.animation != "run":
+			sprite.play("run")
+	else:
+		if sprite.animation != "diam":
+			sprite.play("diam")
+
+	if abs(velocity.x) > 1:
+		sprite.flip_h = velocity.x < 0
+
+	sprite.speed_scale = clamp(speed_now / speed, 0.5, 1.5)
