@@ -1,32 +1,57 @@
 extends Node2D
 
-# Variabel untuk menampung file peluru
 @export var peluru_scene: PackedScene 
 
-func _process(_delta):
-	# 1. Membuat senjata selalu membidik ke arah kursor mouse
+var max_peluru: int = 5
+var peluru_sekarang: int = 5
+var timer_isi_ulang: float = 0.0
+
+# Baris ini untuk mencari node bernama "Ammo" di dalam folder UI
+@onready var ammo_label = get_tree().current_scene.find_child("AmmoLabel", true, false)
+@onready var wadah_peluru = get_tree().current_scene.find_child("WadahPeluru", true, false)
+
+func _ready():
+	# Cek di awal apakah node Ammo ditemukan
+	if ammo_label == null:
+		print("PERINGATAN: Node 'Ammo' tidak ditemukan! Pastikan namanya sama persis di Scene Tree.")
+
+func _process(delta):
 	look_at(get_global_mouse_position())
 	
-	# 2. Jika klik kiri ditekan, jalankan fungsi tembak()
+	if wadah_peluru:
+		var daftar_ikon_peluru = wadah_peluru.get_children() # Ambil ke-5 gambar peluru
+		
+		# Looping untuk mengecek setiap gambar peluru
+		for i in range(daftar_ikon_peluru.size()):
+			if i < peluru_sekarang:
+				daftar_ikon_peluru[i].visible = true  # Munculkan gambar
+			else:
+				daftar_ikon_peluru[i].visible = false # Sembunyikan gambar
+	
+	# --- BAGIAN UPDATE UI ---
+	if ammo_label:
+		ammo_label.text = "Peluru: " + str(peluru_sekarang) + " / " + str(max_peluru)
+	
+	# Logika Pengisian Peluru
+	if peluru_sekarang < max_peluru:
+		timer_isi_ulang += delta
+		if timer_isi_ulang >= 2.0:
+			peluru_sekarang += 1
+			timer_isi_ulang = 0.0
+
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		tembak()
 
 func tembak():
-	# 3. Cek apakah pistol sudah bisa menembak (cooldown selesai)
-	if $TimerTembak.is_stopped():
-		
-		# 4. Memastikan file peluru sudah kamu masukkan di Inspector
+	if $TimerTembak.is_stopped() and peluru_sekarang > 0:
 		if peluru_scene != null:
-			var peluru = peluru_scene.instantiate()
+			peluru_sekarang -= 1 # Mengurangi jumlah peluru
 			
-			# PENTING: Posisi muncul peluru diletakkan di ujung laras, BUKAN di mouse
+			var peluru = peluru_scene.instantiate()
 			peluru.global_position = $TitikTembak.global_position
 			peluru.rotation = global_rotation
-			
-			# Lepaskan peluru ke dalam dunia game
 			get_tree().current_scene.add_child(peluru)
 			
-			# Mulai ulang timer agar ada jeda sebelum peluru berikutnya
+			$TembakSFX.pitch_scale = randf_range(0.9, 1.1)
+			$TembakSFX.play()
 			$TimerTembak.start()
-		else:
-			print("PERINGATAN: Kamu belum memasukkan file peluru_api.tscn ke kolom Inspector Senjata!")	
