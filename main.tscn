@@ -16,7 +16,6 @@ position = Vector2(2, -2)
 
 [node name="Map" parent="." unique_id=1133271953 instance=ExtResource("1_1bvp3")]
 
-
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
 position = Vector2(-167, 1005)
 
