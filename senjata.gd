@@ -12,28 +12,28 @@ func _process(_delta):
 		tembak()
 
 func tembak():
-	# 3. Cek apakah pistol sudah bisa menembak (cooldown selesai)
+	# SEMUA yang ada di bawah ini hanya jalan jika Timer sudah berhenti (1 detik sekali)
 	if $TimerTembak.is_stopped():
-		
-		# 4. Memastikan file peluru sudah kamu masukkan di Inspector
 		if peluru_scene != null:
+			# 1. Logika Munculkan Peluru
 			var peluru = peluru_scene.instantiate()
-			
-			# PENTING: Posisi muncul peluru diletakkan di ujung laras, BUKAN di mouse
 			peluru.global_position = $TitikTembak.global_position
 			peluru.rotation = global_rotation
-			
-			# Lepaskan peluru ke dalam dunia game
 			get_tree().current_scene.add_child(peluru)
 			
-			# Mulai ulang timer agar ada jeda sebelum peluru berikutnya
+			# 2. Logika Suara (WAJIB DI SINI)
+			# Baris ini tidak akan pernah jalan sebelum 1 detik berlalu
+			$TembakSFX.pitch_scale = randf_range(0.9, 1.1)
+			$TembakSFX.play()
+			
+			# 3. Mulai ulang Timer
 			$TimerTembak.start()
 		else:
-			print("PERINGATAN: Kamu belum memasukkan file peluru_api.tscn ke kolom Inspector Senjata!")	
+			print("File peluru belum dimasukkan!")
 # ... kodinganmu untuk memunculkan peluru ...
 	var peluru = peluru_scene.instantiate()
 	get_tree().root.add_child(peluru)
 	
 	# TAMBAHKAN BARIS INI:
 	$TembakSFX.pitch_scale = randf_range(0.9, 1.1)
-	$TembakSFX.play()
+	

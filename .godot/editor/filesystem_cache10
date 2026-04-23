@@ -1,5 +1,7 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776878210
+::res://::1776934577
+BGM.tscn::PackedScene::3988202684972863601::1776879320::0::1::::<><><>0<>0<><>::uid://ky8p6pnhu4vn::::res://asset/music/Jeremy Blake - Powerup!.mp3
+default_bus_layout.tres::AudioBusLayout::875835799073575356::1776879178::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::2350064347101374868::1776236364::1776236830::1::::<><><>0<>0<>927009caa7278f0a091e73feeea2a43d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 main.tscn::PackedScene::4142394143580834640::1776878210::0::1::::<><><>0<>0<><>::uid://c8auwj37choyt::::res://map1.tscn<>uid://jirqx5jjco1s::::res://musuh.tscn<>uid://dc5n0rbnx5as5::::res://player.tscn<>uid://ky8p6pnhu4vn::::res://asset/music/Jeremy Blake - Powerup!.mp3
 main_menu.tscn::PackedScene::5955134371444120186::1776236364::0::1::::<><><>0<>0<><>::
@@ -12,9 +14,8 @@ peluru_api.gd::GDScript::7618531218008470412::1776323588::0::1::::<>Area2D<><>0<
 peluru_api.tscn::PackedScene::3972770273063458650::1776840641::0::1::::<><><>0<>0<><>::uid://dgsqdjckf3tj5::::res://peluru_api.gd<>uid://7ryglts6wcoq::::res://asset/weapon_effect/shot_round.png
 player.gd::GDScript::7412999062894323433::1776840641::0::1::::<>CharacterBody2D<><>0<>0<><>::
 player.tscn::PackedScene::7362405931795080514::1776840641::0::1::::<><><>0<>0<><>::uid://ddu6ankro7cgv::::res://player.gd<>uid://duhkioyxpsjii::::res://asset/character/idle_character.png<>uid://b111vxo48rx28::::res://senjata.tscn<>uid://dqf6bdrl4j2or::::res://asset/character/walk_right_character.png
-BGM.tscn::PackedScene::3988202684972863601::1776877664::0::1::::<><><>0<>0<><>::uid://ky8p6pnhu4vn::::res://asset/music/Jeremy Blake - Powerup!.mp3
-senjata.gd::GDScript::3667067674776368639::1776250213::0::1::::<>Node2D<><>0<>0<><>::
-senjata.tscn::PackedScene::4266621814398165323::1776840641::0::1::::<><><>0<>0<><>::uid://bh2p48i7g7l6f::::res://asset/Weapon/GUN_01_[square_frame]_01_V1.00.png<>uid://bsimcltvcgjx4::::res://senjata.gd<>uid://bwuo7fslti7w5::::res://peluru_api.tscn
+senjata.gd::GDScript::3667067674776368639::1776879249::0::1::::<>Node2D<><>0<>0<><>::
+senjata.tscn::PackedScene::4266621814398165323::1776879311::0::1::::<><><>0<>0<><>::uid://bh2p48i7g7l6f::::res://asset/Weapon/GUN_01_[square_frame]_01_V1.00.png<>uid://bsimcltvcgjx4::::res://senjata.gd<>uid://bwuo7fslti7w5::::res://peluru_api.tscn<>uid://ds7tivv65shnf::::res://asset/sfx/mrfriends-pistol-shot-233473.mp3
 tessss.txt::TextFile::-1::1776261239::0::1::::<><><>0<>0<><>::
 worlds.tscn::PackedScene::5774348704472154741::1776323588::0::1::::<><><>0<>0<><>::uid://68tcmj8f7hy::::res://asset/tile_map/Texture/TX Tileset Grass.png<>uid://dfekg5su8miif::::res://asset/tile_map/Texture/TX Tileset Stone Ground.png<>uid://dpr6ojh8bpd8i::::res://asset/tile_map/Texture/TX Tileset Wall.png<>uid://c081xvy6snas1::::res://asset/tile_map/testblock.png<>uid://drhj7wejcls0b::::res://asset/tile_map/Texture/TX Struct.png
 ::res://asset/::1776878348
@@ -26,7 +27,7 @@ walk_left_character.png::CompressedTexture2D::2847378397072288616::1776840641::1
 walk_right_character.png::CompressedTexture2D::8294489634998439825::1776840641::1776840687::1::::<><><>0<>0<>5f17cf188e60edf685a0f256a3ae1620<>res://.godot/imported/walk_right_character.png-d5ad81ca1790ad1bebf2f94fc212aa2f.ctex::
 ::res://asset/music/::1776878194
 Jeremy Blake - Powerup!.mp3::AudioStreamMP3::753465602144381115::1776877094::1776878194::1::::<><><>0<>0<>3f531ec57cbbbda8d4e7d262374ceb22<>res://.godot/imported/Jeremy Blake - Powerup!.mp3-34aec060270a56dd6c4fbc3ec060df91.mp3str::
-::res://asset/sfx/::1776878522
+::res://asset/sfx/::1776878523
 mrfriends-pistol-shot-233473.mp3::AudioStreamMP3::8489890370788150891::1776878516::1776878523::1::::<><><>0<>0<>f032e5e7b5f81be5d4e30c664d723121<>res://.godot/imported/mrfriends-pistol-shot-233473.mp3-8ab6f77846dcf0fe21b6dac1a20fe0b3.mp3str::
 ::res://asset/tile_map/::1776840687
 testblock.png::CompressedTexture2D::6597307780791447782::1776236364::1776236830::1::::<><><>0<>0<>1609e7c626538e4bad69cc6ce081c3f6<>res://.godot/imported/testblock.png-bed4a130789f32a1a8ceedffe5c09fcd.ctex::
