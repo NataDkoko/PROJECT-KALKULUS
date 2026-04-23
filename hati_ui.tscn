@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dsk3gnkohnmx"]
+
+[ext_resource type="Texture2D" uid="uid://x0e1vv3m1tsx" path="res://asset/healt/Leaf Heart.png" id="1_djdnr"]
+[ext_resource type="Script" uid="uid://cee63me6ac7rg" path="res://hati_ui.gd" id="1_rk2y7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djdnr"]
+atlas = ExtResource("1_djdnr")
+region = Rect2(0, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk2y7"]
+atlas = ExtResource("1_djdnr")
+region = Rect2(20, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xls0f"]
+atlas = ExtResource("1_djdnr")
+region = Rect2(40, 0, 20, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rk2y7"]
+resource_name = "hit_anim"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djdnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk2y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xls0f")
+}],
+"loop": false,
+"name": &"hit_anim",
+"speed": 5.0
+}]
+
+[node name="HatiUI" type="Control" unique_id=1776569186]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rk2y7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=630601852]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_rk2y7")
+animation = &"hit_anim"
+frame_progress = 0.62939185
