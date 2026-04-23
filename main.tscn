@@ -15,11 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1084, 1056, 451, 1049, 
 position = Vector2(2, -2)
 
 [node name="Map" parent="." unique_id=1133271953 instance=ExtResource("1_1bvp3")]
-<<<<<<< HEAD
-position = Vector2(-11, 26)
-=======
-position = Vector2(311, 454)
->>>>>>> f24fda7 (menambahkan design musuh)
+
 
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
 position = Vector2(-167, 1005)
