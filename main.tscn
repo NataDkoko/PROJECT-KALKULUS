@@ -12,16 +12,44 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(1084, 1056, 451, 1049, 449, 935, 193, 926, 195, 838, 831, 832, 835, 791, 836, 189, 923, 192, 927, 313, 956, 313, 961, -98, -96, -95, -104, 212, -56, 216, -59, -60, 924, -60, 929, 151, 835, 149, 833, 33, 701, 33, 701, 66, 795, 67, 796, 796, 68, 796, 71, 358, 189, 349, 196, 195, 473, 201, 482, 314, 534, 324, 538, 531, 322, 531, 326, 359, 404, 345, 396, 286, 290, 295, 288, 442, 175, 458, 168, 654, 183, 700, 457, 704, 455, 665, 199, 653, 205, 490, 282, 498, 296, 573, 570, 570, 574, 490, 573, 283, 522, 272, 520, 198, 650, 198, 665, 209, 668, 410, 669, 671, 573, 670, 573, 704, 707, 701, 705, 157, 609, 144, 611, 34, 421, 38, 418, 64, 569, 66, 570, 151, 159, 163, 161, 314, 69, 319, 70, 73, 227, 58, 218, 21, 30, 31, 30, 831, 148, 839, 139, 912, -51, 916, -62, 767, -101, 765, -99, 969, 409, 973, 404, 1048, -187, 1041, -187, 352, -99, 356, -96, 563, -65, 570, -55, 320, -184, 315, -183, -194, 1061, -190, 1054, 450, 925, 452, 911, 559, 925, 918, 557, 920, 550, 948, 960, 959, 978, 492, 1054, 490, 1056, 950, 1086, 957)])
 
 [node name="Main" type="Node2D" unique_id=1514846995]
-position = Vector2(1, 0)
+position = Vector2(2, -2)
 
 [node name="Map" parent="." unique_id=1133271953 instance=ExtResource("1_1bvp3")]
+<<<<<<< HEAD
 position = Vector2(-11, 26)
+=======
+position = Vector2(311, 454)
+>>>>>>> f24fda7 (menambahkan design musuh)
 
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
 position = Vector2(-167, 1005)
 
 [node name="musuh" parent="." unique_id=719829037 instance=ExtResource("1_h2yge")]
-position = Vector2(947, 1047)
+position = Vector2(-143.00002, 535.99994)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh2" parent="." unique_id=1346337247 instance=ExtResource("1_h2yge")]
+position = Vector2(174.00003, 271.99994)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh3" parent="." unique_id=240700919 instance=ExtResource("1_h2yge")]
+position = Vector2(9.999939, -503.00006)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh4" parent="." unique_id=1976320875 instance=ExtResource("1_h2yge")]
+position = Vector2(1307, -470.00003)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh5" parent="." unique_id=1970170912 instance=ExtResource("1_h2yge")]
+position = Vector2(1341, 20.999985)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh6" parent="." unique_id=698053402 instance=ExtResource("1_h2yge")]
+position = Vector2(593.9999, 566)
+scale = Vector2(0.5, 0.5)
+
+[node name="musuh7" parent="." unique_id=1327185627 instance=ExtResource("1_h2yge")]
+position = Vector2(485.99994, -1022.00024)
 scale = Vector2(0.5, 0.5)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1460735249]
