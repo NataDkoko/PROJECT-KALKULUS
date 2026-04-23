@@ -10,6 +10,8 @@ var player: Node2D
 var agent: NavigationAgent2D
 var can_see_player: bool = false
 var is_dead: bool = false # Status apakah musuh masih hidup
+var damage_ke_player: int = 1
+var waktu_tunggu_serang: float = 0.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -49,7 +51,18 @@ func _physics_process(delta):
 
 		move_and_slide()
 		update_animation()
-
+	if waktu_tunggu_serang > 0:
+		waktu_tunggu_serang -= delta # Kurangi waktu tunggu tiap detik
+	else:
+		# Pastikan node Hitbox ada agar tidak error
+		if has_node("Hitbox"): 
+			var target_di_hitbox = $Hitbox.get_overlapping_bodies() 
+			for target in target_di_hitbox:
+				if target.is_in_group("player"):
+					if target.has_method("terima_damage"):
+						target.terima_damage(damage_ke_player)
+						waktu_tunggu_serang = 1.0 # Gigit lagi setelah 1 detik
+						
 func check_visibility():
 	var dist = global_position.distance_to(player.global_position)
 	
@@ -111,3 +124,11 @@ func update_animation():
 		sprite.flip_h = velocity.x < 0
 
 	sprite.speed_scale = clamp(speed_now / speed, 0.5, 1.5)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+	
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
