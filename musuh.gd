@@ -94,7 +94,12 @@ func take_damage(amount: int):
 
 # Fungsi untuk proses mati
 func die():
+	if is_dead: return # Cek agar skor tidak nambah dua kali
 	is_dead = true
+	
+	Global.score += 100
+	print("Skor bertambah! Total: ", Global.score)
+	
 	velocity = Vector2.ZERO # Berhenti bergerak
 	
 	# Matikan tabrakan biar player gak nabrak "mayat" musuh
