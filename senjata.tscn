@@ -12,8 +12,8 @@ peluru_scene = ExtResource("2_vq72m")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=235513062]
 texture_filter = 1
-position = Vector2(8.999985, 0)
-scale = Vector2(1.6796879, 1.5234374)
+position = Vector2(-0.9375057, 9.01307)
+scale = Vector2(1.0585946, 0.9601205)
 texture = ExtResource("1_uflv4")
 
 [node name="TitikTembak" type="Marker2D" parent="." unique_id=1534087637]

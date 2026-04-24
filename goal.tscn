@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ce7pdy150vsgg"]
+
+[ext_resource type="Texture2D" uid="uid://8qnhmhjlpjku" path="res://icon.svg" id="1_6k3qi"]
+
+[node name="Goal" type="Node2D" unique_id=621955728]
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=879967897]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1867361640]
+texture = ExtResource("1_6k3qi")

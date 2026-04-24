@@ -6,9 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgojx"]
 size = Vector2(117, 114)
 
-[node name="musuh" type="CharacterBody2D" unique_id=719829037]
+[node name="Orc-Warior" type="CharacterBody2D" unique_id=719829037]
 script = ExtResource("1_5xx5t")
 speed = 150.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1820272405]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=712683039]
 scale = Vector2(0.5, 0.5)

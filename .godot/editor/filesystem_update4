@@ -1,3 +1,5 @@
-res://map1.tscn
-res://main.tscn
 res://player.tscn
+res://goal.gd
+res://goal.tscn
+res://main.tscn
+res://player.gd
