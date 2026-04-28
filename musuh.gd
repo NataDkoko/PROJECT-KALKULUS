@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
+@export var speed_jalan: float = 10.0
 @export var speed: float = 120.0
 @export var acceleration: float = 6.0
 @export var detection_range: float = 300.0
 @export var max_health: int = 100  # Darah maksimal musuh
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var nav_agent = $NavigationAgent2D
 
 var current_health: int
 var player: Node2D
@@ -12,8 +15,8 @@ var can_see_player: bool = false
 var is_dead: bool = false # Status apakah musuh masih hidup
 var damage_ke_player: int = 1
 var waktu_tunggu_serang: float = 0.0
+var waktu_ganti_arah: float = 0.0
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	current_health = max_health # Set darah saat baru mulai
@@ -29,32 +32,60 @@ func _physics_process(delta):
 		return 
 
 	if player and agent:
-		check_visibility()
+		# --- MODE MENGEJAR (LARI) ---
+		# Karena 'player' sudah terdeteksi, langsung lari mengejar
+		if agent.target_position.distance_to(player.global_position) > 5:
+			agent.target_position = player.global_position
 
-		if can_see_player:
-			if agent.target_position.distance_to(player.global_position) > 5:
-				agent.target_position = player.global_position
+		var direction = Vector2.ZERO
 
-			var direction = Vector2.ZERO
-
-			if not agent.is_navigation_finished():
-				var next_pos = agent.get_next_path_position()
-				direction = (next_pos - global_position).normalized()
-			else:
-				direction = (player.global_position - global_position).normalized()
-
-			var target_velocity = direction * speed
-			velocity = velocity.lerp(target_velocity, acceleration * delta)
-
+		if not agent.is_navigation_finished():
+			var next_pos = agent.get_next_path_position()
+			direction = (next_pos - global_position).normalized()
 		else:
-			velocity = velocity.lerp(Vector2.ZERO, acceleration * delta)
+			direction = (player.global_position - global_position).normalized()
 
-		move_and_slide()
-		update_animation()
+		# Lari mengejar pakai variabel 'speed'
+		var target_velocity = direction * speed 
+		velocity = velocity.lerp(target_velocity, acceleration * delta)
+
+	elif agent: 
+		# --- MODE JALAN SANTAI (WANDER) ---
+		waktu_ganti_arah -= delta
+		
+		# Jika waktu habis atau sampai di tujuan, cari titik BARU yang VALID
+		if waktu_ganti_arah <= 0 or agent.is_navigation_finished():
+			# Kita ambil titik acak, tapi kita tanya ke NavigationServer 
+			# "Mana titik terdekat di lantai yang bisa saya injak?"
+			var random_offset = Vector2(randf_range(-150, 150), randf_range(-150, 150))
+			var titik_tujuan = global_position + random_offset
+			
+			# Menggunakan NavigationServer2D agar musuh tidak memilih titik di dalam tembok
+			var map = get_world_2d().get_navigation_map()
+			var titik_valid = NavigationServer2D.map_get_closest_point(map, titik_tujuan)
+			
+			agent.target_position = titik_valid
+			waktu_ganti_arah = randf_range(2.0, 4.0) # Beri waktu variasi agar tidak barengan jalannya
+			
+		var direction = Vector2.ZERO
+		if not agent.is_navigation_finished():
+			var next_pos = agent.get_next_path_position()
+			direction = (next_pos - global_position).normalized()
+
+		var target_velocity = direction * speed_jalan 
+		velocity = velocity.lerp(target_velocity, acceleration * delta)
+		
+		if not agent.is_navigation_finished():
+			var next_pos = agent.get_next_path_position()
+			direction = (next_pos - global_position).normalized()
+
+	move_and_slide()
+	update_animation()
+	
+	# --- LOGIKA SERANGAN KETIKA DEKAT ---
 	if waktu_tunggu_serang > 0:
 		waktu_tunggu_serang -= delta # Kurangi waktu tunggu tiap detik
 	else:
-		# Pastikan node Hitbox ada agar tidak error
 		if has_node("Hitbox"): 
 			var target_di_hitbox = $Hitbox.get_overlapping_bodies() 
 			for target in target_di_hitbox:
@@ -62,24 +93,6 @@ func _physics_process(delta):
 					if target.has_method("terima_damage"):
 						target.terima_damage(damage_ke_player)
 						waktu_tunggu_serang = 1.0 # Gigit lagi setelah 1 detik
-						
-func check_visibility():
-	var dist = global_position.distance_to(player.global_position)
-	
-	if dist > detection_range:
-		can_see_player = false
-		return
-
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, player.global_position)
-	query.exclude = [self.get_rid()]
-	
-	var result = space_state.intersect_ray(query)
-	
-	if result and result.collider == player:
-		can_see_player = true
-	else:
-		can_see_player = false
 
 # Fungsi untuk menerima damage dari peluru
 func take_damage(amount: int):
