@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://b0auvkbn5nvgi"]
 
 [ext_resource type="PackedScene" uid="uid://c8auwj37choyt" path="res://map1.tscn" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://jirqx5jjco1s" path="res://musuh.tscn" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://br6sr31hso4vs" path="res://main.gd" id="1_kek77"]
 [ext_resource type="PackedScene" uid="uid://dc5n0rbnx5as5" path="res://player.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bwuo7fslti7w5" path="res://peluru_api.tscn" id="3_5vw27"]
 [ext_resource type="AudioStream" uid="uid://ky8p6pnhu4vn" path="res://asset/music/Jeremy Blake - Powerup!.mp3" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bqexjkf4gybsl" path="res://asset/peluru/Snipe1.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dsk3gnkohnmx" path="res://hati_ui.tscn" id="6_7mycd"]
@@ -18,41 +17,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1084, 1056, 451, 1049, 
 
 [node name="Main" type="Node2D" unique_id=1514846995]
 position = Vector2(2, -2)
+script = ExtResource("1_kek77")
 
 [node name="Map" parent="." unique_id=1133271953 instance=ExtResource("1_1bvp3")]
 
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
-position = Vector2(678, 1107)
-speed = 350.0
-peluru_scene = ExtResource("3_5vw27")
-
-[node name="musuh" parent="." unique_id=719829037 instance=ExtResource("1_h2yge")]
-position = Vector2(-143.00002, 535.99994)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh2" parent="." unique_id=1346337247 instance=ExtResource("1_h2yge")]
-position = Vector2(174.00003, 271.99994)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh3" parent="." unique_id=240700919 instance=ExtResource("1_h2yge")]
-position = Vector2(9.999939, -503.00006)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh4" parent="." unique_id=1976320875 instance=ExtResource("1_h2yge")]
-position = Vector2(1307, -470.00003)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh5" parent="." unique_id=1970170912 instance=ExtResource("1_h2yge")]
-position = Vector2(1341, 20.999985)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh6" parent="." unique_id=698053402 instance=ExtResource("1_h2yge")]
-position = Vector2(593.9999, 566)
-scale = Vector2(0.5, 0.5)
-
-[node name="musuh7" parent="." unique_id=1327185627 instance=ExtResource("1_h2yge")]
-position = Vector2(485.99994, -1022.00024)
-scale = Vector2(0.5, 0.5)
+position = Vector2(669, 1235)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1460735249]
 visible = false
@@ -153,3 +123,80 @@ offset_bottom = 62.0
 theme = SubResource("Theme_5vw27")
 theme_override_font_sizes/font_size = 40
 script = ExtResource("8_kek77")
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1523685986]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=2139505661]
+position = Vector2(252, 39)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=1026053290]
+position = Vector2(1210, 536)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=1495660624]
+position = Vector2(1216, 803)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=1935285461]
+position = Vector2(1635, 776)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" unique_id=1037789343]
+position = Vector2(1626, -217)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints" unique_id=2013775406]
+position = Vector2(921, -226)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints" unique_id=811745598]
+position = Vector2(681, -490)
+
+[node name="Marker2D8" type="Marker2D" parent="SpawnPoints" unique_id=291445734]
+position = Vector2(283, -463)
+
+[node name="Marker2D9" type="Marker2D" parent="SpawnPoints" unique_id=750889077]
+position = Vector2(-151, -242)
+
+[node name="Marker2D10" type="Marker2D" parent="SpawnPoints" unique_id=660586359]
+position = Vector2(389, 1023)
+
+[node name="Marker2D11" type="Marker2D" parent="SpawnPoints" unique_id=293020419]
+position = Vector2(878, 832)
+
+[node name="Marker2D12" type="Marker2D" parent="SpawnPoints" unique_id=1069850363]
+position = Vector2(1216, 1031)
+
+[node name="Marker2D13" type="Marker2D" parent="SpawnPoints" unique_id=1956920847]
+position = Vector2(47, 784)
+
+[node name="Marker2D14" type="Marker2D" parent="SpawnPoints" unique_id=1513792458]
+position = Vector2(562, -756)
+
+[node name="Marker2D15" type="Marker2D" parent="SpawnPoints" unique_id=1603836821]
+position = Vector2(1349, -745)
+
+[node name="Marker2D16" type="Marker2D" parent="SpawnPoints" unique_id=1411452662]
+position = Vector2(1620, -717)
+
+[node name="Marker2D17" type="Marker2D" parent="SpawnPoints" unique_id=636634372]
+position = Vector2(949, -988)
+
+[node name="Marker2D18" type="Marker2D" parent="SpawnPoints" unique_id=225245236]
+position = Vector2(1305, -1514)
+
+[node name="Marker2D19" type="Marker2D" parent="SpawnPoints" unique_id=187196339]
+position = Vector2(739, -1275)
+
+[node name="Marker2D20" type="Marker2D" parent="SpawnPoints" unique_id=314688836]
+position = Vector2(472, -1493)
+
+[node name="Marker2D21" type="Marker2D" parent="SpawnPoints" unique_id=1653663533]
+position = Vector2(282, -1028)
+
+[node name="Marker2D22" type="Marker2D" parent="SpawnPoints" unique_id=1420813810]
+position = Vector2(-147, -1198)
+
+[node name="Marker2D23" type="Marker2D" parent="SpawnPoints" unique_id=665828087]
+position = Vector2(47, -1485)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=174327195]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
