@@ -1,9 +1,7 @@
-[gd_scene format=3 uid="uid://cdmvv73713dr3"]
-
-[ext_resource type="Texture2D" path="res://background.png" id="1_cmhrf"]
-[gd_scene format=3 uid="uid://mjnw7otxm20p"]
+[gd_scene format=3 uid="uid://xko3xooqc50c"]
 
 [ext_resource type="Texture2D" uid="uid://rhu0jhup3ua6" path="res://background.png" id="1_cmhrf"]
+[ext_resource type="Script" uid="uid://dyovygrj6go0y" path="res://mainmenu.gd" id="1_wgsso"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmhrf"]
 texture = ExtResource("1_cmhrf")
@@ -16,6 +14,23 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="GDScript" id="GDScript_igs2m"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
 [node name="Mainmenu" type="Control" unique_id=1444903445]
 layout_mode = 3
 anchors_preset = 15
@@ -25,6 +40,7 @@ offset_right = -2.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wgsso")
 
 [node name="Panel" type="Panel" parent="." unique_id=1580704776]
 layout_mode = 1
@@ -57,7 +73,9 @@ size_flags_stretch_ratio = 0.3
 theme_override_colors/font_color = Color(0.13561666, 0.13561702, 0.13561669, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
+action_mode = 0
 text = "Star Game"
+script = SubResource("GDScript_igs2m")
 
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=119181371]
 layout_mode = 2
@@ -76,3 +94,6 @@ theme_override_colors/font_color = Color(0.13561666, 0.13561702, 0.13561669, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
 text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]

@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="Vektor Game"
-run/main_scene="uid://b0auvkbn5nvgi"
+run/main_scene="uid://cdmvv73713dr3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://bw26d6tdk4lp6"
 
 [autoload]
 
 Global="*uid://b0chqpgr2shmm"
+Bgm="*uid://bw26d6tdk4lp6"
 
 [display]
 
