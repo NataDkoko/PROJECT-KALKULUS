@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://c8auwj37choyt" path="res://map1.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://br6sr31hso4vs" path="res://main.gd" id="1_kek77"]
 [ext_resource type="PackedScene" uid="uid://dc5n0rbnx5as5" path="res://player.tscn" id="2_0xm2m"]
-[ext_resource type="AudioStream" uid="uid://ky8p6pnhu4vn" path="res://asset/music/Jeremy Blake - Powerup!.mp3" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bqexjkf4gybsl" path="res://asset/peluru/Snipe1.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dsk3gnkohnmx" path="res://hati_ui.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://brqwd85sp6nfe" path="res://score_label.gd" id="8_kek77"]
@@ -28,10 +27,6 @@ position = Vector2(669, 1235)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1460735249]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_h2yge")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=529948229]
-stream = ExtResource("4_1bvp3")
-autoplay = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=26814556]
 
