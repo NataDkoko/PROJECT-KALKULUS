@@ -140,11 +140,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dihok"]
-radius = 42.930405
-height = 93.37922
+radius = 37.654926
+height = 75.504456
 
 [node name="musuh" type="CharacterBody2D" unique_id=719829037]
 rotation = 0.17831278
+collision_layer = 2
 script = ExtResource("1_5xx5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=712683039]
@@ -152,7 +153,7 @@ scale = Vector2(0.5, 0.5)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=42407270]
-position = Vector2(1.241585, 6.8890095)
+position = Vector2(-1.9682887, 0.3547387)
 rotation = 2.9792771
 scale = Vector2(0.5000001, 0.5000001)
 shape = SubResource("CapsuleShape2D_1vf1i")
@@ -160,9 +161,9 @@ shape = SubResource("CapsuleShape2D_1vf1i")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1516102335]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1409165159]
-position = Vector2(-10.562092, -52.96643)
+position = Vector2(-7.043185, -24.402134)
 rotation = -0.15184365
-scale = Vector2(2.965308, 2.7589922)
+scale = Vector2(1.4915833, 1.3512219)
 sprite_frames = SubResource("SpriteFrames_5ark8")
 animation = &"mati"
 
