@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="Vektor Game"
+<<<<<<< HEAD
 run/main_scene="uid://b0auvkbn5nvgi"
+=======
+run/main_scene="uid://bf3wwiyf8r58m"
+>>>>>>> 5ef6d70b2c221b7cdea6e141e8807e04beabec01
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
