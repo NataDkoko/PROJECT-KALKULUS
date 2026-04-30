@@ -4,130 +4,156 @@ extends CharacterBody2D
 @export var speed: float = 120.0
 @export var acceleration: float = 6.0
 @export var detection_range: float = 300.0
-@export var max_health: int = 100  # Darah maksimal musuh
+@export var max_health: int = 100
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
 
 var current_health: int
 var player: Node2D
 var agent: NavigationAgent2D
-var can_see_player: bool = false
-var is_dead: bool = false # Status apakah musuh masih hidup
+
+var is_dead: bool = false
+
 var damage_ke_player: int = 1
 var waktu_tunggu_serang: float = 0.0
 var waktu_ganti_arah: float = 0.0
 
 
 func _ready():
-	current_health = max_health # Set darah saat baru mulai
+	current_health = max_health
 	player = get_parent().get_node("Player")
-	agent = $NavigationAgent2D
-	
+	agent = nav_agent
+
 	agent.path_desired_distance = 4.0
 	agent.target_desired_distance = 2.0
 
+	# 🔥 PENTING: paksa musuh masuk ke navmesh
+	var map = get_world_2d().get_navigation_map()
+	global_position = NavigationServer2D.map_get_closest_point(map, global_position)
+
+
 func _physics_process(delta):
-	# Kalau musuhnya udah mati, stop semua pergerakan dan kode di bawahnya
 	if is_dead:
-		return 
+		return
 
-	if player and agent:
-		# --- MODE MENGEJAR (LARI) ---
-		# Karena 'player' sudah terdeteksi, langsung lari mengejar
-		if agent.target_position.distance_to(player.global_position) > 5:
-			agent.target_position = player.global_position
+	if player == null:
+		return
 
-		var direction = Vector2.ZERO
+	var distance = global_position.distance_to(player.global_position)
+	var direction = Vector2.ZERO
 
-		if not agent.is_navigation_finished():
-			var next_pos = agent.get_next_path_position()
+	# =========================
+	# MODE KEJAR
+	# =========================
+	if distance <= detection_range:
+		agent.target_position = player.global_position
+
+		var next_pos = agent.get_next_path_position()
+
+		# ✅ pakai navigation kalau valid
+		if not agent.is_navigation_finished() and next_pos != Vector2.ZERO:
 			direction = (next_pos - global_position).normalized()
 		else:
+			# 🔥 fallback langsung ke player
 			direction = (player.global_position - global_position).normalized()
 
-		# Lari mengejar pakai variabel 'speed'
-		var target_velocity = direction * speed 
+		var target_velocity = direction * speed
 		velocity = velocity.lerp(target_velocity, acceleration * delta)
 
-	elif agent: 
-		# --- MODE JALAN SANTAI (WANDER) ---
+	# =========================
+	# MODE WANDER
+	# =========================
+	else:
 		waktu_ganti_arah -= delta
-		
-		# Jika waktu habis atau sampai di tujuan, cari titik BARU yang VALID
+
 		if waktu_ganti_arah <= 0 or agent.is_navigation_finished():
-			# Kita ambil titik acak, tapi kita tanya ke NavigationServer 
-			# "Mana titik terdekat di lantai yang bisa saya injak?"
-			var random_offset = Vector2(randf_range(-150, 150), randf_range(-150, 150))
+			var random_offset = Vector2(
+				randf_range(-150, 150),
+				randf_range(-150, 150)
+			)
+
 			var titik_tujuan = global_position + random_offset
-			
-			# Menggunakan NavigationServer2D agar musuh tidak memilih titik di dalam tembok
 			var map = get_world_2d().get_navigation_map()
 			var titik_valid = NavigationServer2D.map_get_closest_point(map, titik_tujuan)
-			
-			agent.target_position = titik_valid
-			waktu_ganti_arah = randf_range(2.0, 4.0) # Beri waktu variasi agar tidak barengan jalannya
-			
-		var direction = Vector2.ZERO
-		if not agent.is_navigation_finished():
-			var next_pos = agent.get_next_path_position()
-			direction = (next_pos - global_position).normalized()
 
-		var target_velocity = direction * speed_jalan 
-		velocity = velocity.lerp(target_velocity, acceleration * delta)
-		
-		if not agent.is_navigation_finished():
-			var next_pos = agent.get_next_path_position()
+			agent.target_position = titik_valid
+			waktu_ganti_arah = randf_range(2.0, 4.0)
+
+		var next_pos = agent.get_next_path_position()
+
+		if not agent.is_navigation_finished() and next_pos != Vector2.ZERO:
 			direction = (next_pos - global_position).normalized()
+		else:
+			# 🔥 fallback random biar gak diam
+			direction = Vector2(
+				randf_range(-1, 1),
+				randf_range(-1, 1)
+			).normalized()
+
+		var target_velocity = direction * speed_jalan
+		velocity = velocity.lerp(target_velocity, acceleration * delta)
+
+	# 🔥 SUPER FAILSAFE (biar 100% gak diam)
+	if direction == Vector2.ZERO:
+		direction = (player.global_position - global_position).normalized()
+		velocity = direction * speed
 
 	move_and_slide()
 	update_animation()
-	
-	# --- LOGIKA SERANGAN KETIKA DEKAT ---
+
+	# =========================
+	# SERANG (TIDAK DIUBAH)
+	# =========================
 	if waktu_tunggu_serang > 0:
-		waktu_tunggu_serang -= delta # Kurangi waktu tunggu tiap detik
+		waktu_tunggu_serang -= delta
 	else:
-		if has_node("Hitbox"): 
-			var target_di_hitbox = $Hitbox.get_overlapping_bodies() 
+		if has_node("Hitbox"):
+			var target_di_hitbox = $Hitbox.get_overlapping_bodies()
+
 			for target in target_di_hitbox:
 				if target.is_in_group("player"):
 					if target.has_method("terima_damage"):
 						target.terima_damage(damage_ke_player)
-						waktu_tunggu_serang = 1.0 # Gigit lagi setelah 1 detik
+						waktu_tunggu_serang = 1.0
 
-# Fungsi untuk menerima damage dari peluru
+
+# =========================
+# DAMAGE SYSTEM
+# =========================
 func take_damage(amount: int):
-	if is_dead: 
-		return # Kalau udah mati, gak usah kena damage lagi
+	if is_dead:
+		return
 
 	current_health -= amount
-	print("Musuh kena hit! Darah sisa: ", current_health) # Buat ngecek di output
-	
+	print("Musuh kena hit! Darah sisa: ", current_health)
+
 	if current_health <= 0:
 		die()
 
-# Fungsi untuk proses mati
+
 func die():
-	if is_dead: return # Cek agar skor tidak nambah dua kali
+	if is_dead:
+		return
+
 	is_dead = true
-	
 	Global.score += 100
 	print("Skor bertambah! Total: ", Global.score)
-	
-	velocity = Vector2.ZERO # Berhenti bergerak
-	
-	# Matikan tabrakan biar player gak nabrak "mayat" musuh
-	$CollisionShape2D.set_deferred("disabled", true)
-	
-	# Mainkan animasi mati
-	sprite.play("mati") 
-	
-	# Tunggu sampai animasi mati selesai dimainkan, baru hapus musuh dari game
-	await sprite.animation_finished
-	queue_free() 
 
+	velocity = Vector2.ZERO
+	$CollisionShape2D.set_deferred("disabled", true)
+
+	sprite.play("mati")
+	await sprite.animation_finished
+	queue_free()
+
+
+# =========================
+# ANIMASI (TIDAK DIUBAH)
+# =========================
 func update_animation():
 	if is_dead:
-		return # Jangan update animasi lari/diam kalau lagi proses mati
+		return
 
 	var speed_now = velocity.length()
 
@@ -145,8 +171,7 @@ func update_animation():
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-	
+	pass
 
 func _on_hitbox_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	pass

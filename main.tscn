@@ -20,10 +20,10 @@ position = Vector2(2, -2)
 script = ExtResource("1_kek77")
 
 [node name="Map" parent="." unique_id=1133271953 instance=ExtResource("1_1bvp3")]
-position = Vector2(303, -45)
+position = Vector2(39, 31)
 
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
-position = Vector2(669, 1235)
+position = Vector2(735, 1432)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1460735249]
 visible = false
@@ -134,10 +134,10 @@ position = Vector2(252, 39)
 position = Vector2(1210, 536)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=1495660624]
-position = Vector2(1216, 803)
+position = Vector2(1400, 790)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=1935285461]
-position = Vector2(1635, 776)
+position = Vector2(1674, 501)
 
 [node name="Marker2D5" type="Marker2D" parent="SpawnPoints" unique_id=1037789343]
 position = Vector2(1626, -217)
@@ -155,7 +155,7 @@ position = Vector2(283, -463)
 position = Vector2(-151, -242)
 
 [node name="Marker2D10" type="Marker2D" parent="SpawnPoints" unique_id=660586359]
-position = Vector2(389, 1023)
+position = Vector2(546, 236)
 
 [node name="Marker2D11" type="Marker2D" parent="SpawnPoints" unique_id=293020419]
 position = Vector2(878, 832)
