@@ -83,6 +83,5 @@ scale = Vector2(0.3, 0.3)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=965598969]
 position = Vector2(17, 0)
-zoom = Vector2(3, 3)
 
 [node name="MuncungSenjata" type="Marker2D" parent="." unique_id=847041263]
