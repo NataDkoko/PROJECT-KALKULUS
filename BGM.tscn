@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://ky8p6pnhu4vn" path="res://asset/music/Jeremy Blake - Powerup!.mp3" id="1_f8x3a"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1864156192]
+process_mode = 3
 stream = ExtResource("1_f8x3a")
 volume_db = -9.208
 autoplay = true
