@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cdmvv73713dr3"]
+
+[ext_resource type="Texture2D" path="res://background.png" id="1_cmhrf"]
+[gd_scene format=3 uid="uid://mjnw7otxm20p"]
+
+[ext_resource type="Texture2D" uid="uid://rhu0jhup3ua6" path="res://background.png" id="1_cmhrf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmhrf"]
+texture = ExtResource("1_cmhrf")
+modulate_color = Color(0.3415841, 0.34158432, 0.34158418, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loy4s"]
+bg_color = Color(0.96474224, 0.96474224, 0.9647421, 0.9647059)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Mainmenu" type="Control" unique_id=1444903445]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1580704776]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cmhrf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1222674222]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -167.5
+offset_right = 147.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=315310769]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.13561666, 0.13561702, 0.13561669, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
+text = "Star Game"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=119181371]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.13561666, 0.13561702, 0.13561669, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=914791114]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+theme_override_colors/font_color = Color(0.13561666, 0.13561702, 0.13561669, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
+text = "Exit"
