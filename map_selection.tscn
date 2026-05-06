@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cfurlhltyypqd"]
+
+[ext_resource type="Script" uid="uid://dvm5bfg85s71" path="res://map_selection.gd" id="1_frvc2"]
+
+[node name="MapSelection" type="Control" unique_id=1009347338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frvc2")
+
+[node name="Map1Button" type="Button" parent="." unique_id=898266052]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 234.0
+offset_right = 509.0
+offset_bottom = 314.0
+text = "LABIRIN
+"
+
+[node name="Map2Button" type="Button" parent="." unique_id=1839867202]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 240.0
+offset_right = 662.0
+offset_bottom = 302.0
+text = "CITY
+"
+
+[node name="BackButton" type="Button" parent="." unique_id=416651322]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 410.0
+offset_right = 614.0
+offset_bottom = 486.0
+text = "back
+"
+
+[connection signal="pressed" from="Map1Button" to="." method="_on_map_1_button_pressed"]
+[connection signal="pressed" from="Map2Button" to="." method="_on_map_2_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
