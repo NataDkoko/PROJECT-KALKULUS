@@ -288,11 +288,11 @@ position = Vector2(21, -20)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=965598969]
 position = Vector2(17, 0)
-zoom = Vector2(3, 3)
 
 [node name="MuncungSenjata" type="Marker2D" parent="." unique_id=847041263]
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=418808256]
+visible = false
 position = Vector2(4.9999695, 8.999985)
 scale = Vector2(0.9224303, 0.68830127)
 color = Color(0.96862745, 0.90588236, 0.80784315, 1)
