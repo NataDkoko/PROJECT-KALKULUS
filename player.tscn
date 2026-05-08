@@ -259,6 +259,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_606se"]
+offsets = PackedFloat32Array(0, 0.1264045, 0.39044943)
+colors = PackedColorArray(0.19298245, 0.19298245, 0.19298245, 0.80701756, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u1c27"]
+gradient = SubResource("Gradient_606se")
+width = 69
+height = 68
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(14, 16)
 
@@ -377,6 +389,11 @@ texture_filter = 1
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_1jxqw")
 animation = &"idle_down"
+
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1326565275]
+position = Vector2(-1.0000014, 18.000004)
+scale = Vector2(1.040421, 0.32789505)
+texture = SubResource("GradientTexture2D_u1c27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=972975160]
 position = Vector2(0, 3)
