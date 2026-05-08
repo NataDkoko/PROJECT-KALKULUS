@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @export var speed: float = 350.0
 @export var peluru_scene: PackedScene = preload("res://peluru_api.tscn")
-
+@onready var sprite_player = $AnimatedSprite2D
+@onready var shadow = $BayanganSprite
 @onready var muncung_senjata = $MuncungSenjata
 @onready var anim = $AnimatedSprite2D
 @onready var wadah_hati = get_tree().current_scene.find_child("WadahHati", true, false)
@@ -35,7 +36,7 @@ func _ready():
 	# 4. Sembunyikan portal, dan mulai munculkan player (masih transparan)
 	$PortalEffect.hide() 
 	$AnimatedSprite2D.show() 
-	
+	$Senjata.show()
 	# 5. Buat efek Fade-In dengan Tween
 	var tween = create_tween()
 	# Maksud kode di bawah: Ubah properti "modulate:a" milik $AnimatedSprite2D menjadi 1.0 dalam waktu 0.5 detik
@@ -91,6 +92,19 @@ func _physics_process(_delta):
 # DAMAGE SYSTEM
 # =========================
 func terima_damage(amount: int):
+	for i in range(3):
+		# 1. Ubah warna menjadi Merah Gelap (atau Hitam)
+		# Color(R, G, B) -> 1 adalah full, 0 adalah gelap
+		$AnimatedSprite2D.modulate = Color(0.8, 0.2, 0.2) 
+		
+		# Tunggu 0.1 detik
+		await get_tree().create_timer(0.1).timeout
+		
+		# 2. Kembalikan ke warna asli (Putih Murni = warna normal gambar)
+		$AnimatedSprite2D.modulate = Color(1, 1, 1)
+		
+		# Tunggu 0.1 detik lagi sebelum mengulang kelap-kelip
+		await get_tree().create_timer(0.1).timeout
 	var previous_darah = darah_sekarang
 	darah_sekarang -= amount
 
