@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cfurlhltyypqd"]
+
+[ext_resource type="Script" uid="uid://dvm5bfg85s71" path="res://map_selection.gd" id="1_frvc2"]
+[ext_resource type="Texture2D" uid="uid://b0tsdemqfm03i" path="res://asset/aset main_menu/SHADOW REALM Map Selection 111.png" id="2_kwys1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2hebv"]
+texture = ExtResource("2_kwys1")
+
+[node name="MapSelection" type="Control" unique_id=1009347338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frvc2")
+
+[node name="Panel" type="Panel" parent="." unique_id=1934966859]
+layout_mode = 0
+offset_right = 1287.0
+offset_bottom = 725.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2hebv")
+
+[node name="Map1Button" type="Button" parent="." unique_id=898266052]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 446.0
+offset_right = 597.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(0.0077786995, 0.38948533, 0.99999887, 1)
+text = "THE HOLOW MAZE
+"
+flat = true
+
+[node name="Map2Button" type="Button" parent="." unique_id=1839867202]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 435.0
+offset_right = 932.0
+offset_bottom = 497.0
+theme_override_colors/font_color = Color(0.007843138, 0.3882353, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "NEON DISTRICT
+"
+flat = true
+
+[node name="BackButton" type="Button" parent="." unique_id=416651322]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 653.0
+offset_right = 187.0
+offset_bottom = 684.0
+text = "back
+"
+
+[connection signal="pressed" from="Map1Button" to="." method="_on_map_1_button_pressed"]
+[connection signal="pressed" from="Map2Button" to="." method="_on_map_2_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
