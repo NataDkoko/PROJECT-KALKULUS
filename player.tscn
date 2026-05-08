@@ -288,6 +288,7 @@ position = Vector2(21, -20)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=965598969]
 position = Vector2(17, 0)
+zoom = Vector2(2.5, 2.5)
 
 [node name="MuncungSenjata" type="Marker2D" parent="." unique_id=847041263]
 
