@@ -127,7 +127,7 @@ func take_damage(amount: int):
 		$AnimatedSprite2D.modulate = Color(1, 1, 1)
 		
 		# Tunggu 0.1 detik lagi sebelum mengulang kelap-kelip
-		await get_tree().create_timer(0.1).timeoutw
+		await get_tree().create_timer(0.1).timeout
 	if is_dead: 
 		return # Kalau udah mati, gak usah kena damage lagi
 
