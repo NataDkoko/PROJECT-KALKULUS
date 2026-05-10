@@ -5,7 +5,7 @@ func _on_start_button_pressed():
 	$StartButton/sfxklik.play()
 	await get_tree().create_timer(0.2).timeout
 	
-	get_tree().change_scene_to_file("res://map_selection.tscn")
+	Transition.change_scene("res://map_selection.tscn")
 
 func _on_credit_button_pressed():
 	# Untuk sementara kita cetak pesan dulu di konsol
