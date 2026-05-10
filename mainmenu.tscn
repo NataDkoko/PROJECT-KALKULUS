@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://xko3xooqc50c"]
 
 [ext_resource type="Script" uid="uid://dyovygrj6go0y" path="res://mainmenu.gd" id="1_wgsso"]
-[ext_resource type="Texture2D" uid="uid://bic577opajaio" path="res://asset/SHADOW REALM Main Menu (Variation).png" id="2_d2nv2"]
+[ext_resource type="Texture2D" uid="uid://cobi2neh5ra24" path="res://asset/title/Background.png" id="2_d2nv2"]
+[ext_resource type="Texture2D" uid="uid://bppsl4qwvoxnx" path="res://asset/title/Start_Button.png" id="3_7uvds"]
+[ext_resource type="Texture2D" uid="uid://dfly1xdvt8137" path="res://asset/title/Start_push.png" id="4_3pujl"]
+[ext_resource type="Texture2D" uid="uid://cdtxiusvn7in3" path="res://asset/title/Credit_Button.png" id="5_7uvds"]
+[ext_resource type="AudioStream" uid="uid://bqmw2if6xkrdn" path="res://asset/sfx/ButtonSFX.wav" id="5_rqglp"]
+[ext_resource type="Texture2D" uid="uid://e1a0f0e2fq7d" path="res://asset/title/Credit_Push.png" id="6_7uvds"]
+[ext_resource type="Texture2D" uid="uid://cktek4sxb8qr3" path="res://asset/title/Exit_Button.png" id="7_dihg0"]
+[ext_resource type="Texture2D" uid="uid://cc1v3rjmxqou3" path="res://asset/title/Exit_Push.png" id="8_rqglp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgsso"]
 texture = ExtResource("2_d2nv2")
@@ -12,6 +19,8 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7uvds"]
 
 [sub_resource type="Theme" id="Theme_3pujl"]
 
@@ -31,22 +40,72 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 5.0
+offset_right = -1.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(60, 52)
 theme_override_styles/panel = SubResource("StyleBoxTexture_wgsso")
 
+[node name="StartButton" type="TextureButton" parent="." unique_id=1678334866]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_left = 511.00006
+offset_top = 362.0
+offset_right = 1811.0
+offset_bottom = 832.0001
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("3_7uvds")
+texture_pressed = ExtResource("4_3pujl")
+texture_hover = ExtResource("4_3pujl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="sfxklik" type="AudioStreamPlayer" parent="StartButton" unique_id=1070234560]
+stream = ExtResource("5_rqglp")
+
+[node name="CreditButton2" type="TextureButton" parent="." unique_id=1850983061]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_left = 513.99994
+offset_top = 471.0
+offset_right = 1814.0
+offset_bottom = 941.0001
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("5_7uvds")
+texture_pressed = ExtResource("6_7uvds")
+texture_hover = ExtResource("6_7uvds")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExitButton" type="TextureButton" parent="." unique_id=1419673178]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_left = 514.00006
+offset_top = 581.0
+offset_right = 1814.0
+offset_bottom = 1051.0001
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("7_dihg0")
+texture_pressed = ExtResource("8_rqglp")
+texture_hover = ExtResource("8_rqglp")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1222674222]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -193.0
-offset_top = -49.0
-offset_right = 191.0
-offset_bottom = 152.0
+offset_left = -172.0
+offset_top = 45.5
+offset_right = 212.0
+offset_bottom = 246.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(195, 99.5)
@@ -62,6 +121,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
 action_mode = 0
 text = "Start
 "
+icon = SubResource("ViewportTexture_7uvds")
 
 [node name="credits" type="Button" parent="VBoxContainer" unique_id=119181371]
 layout_mode = 2
@@ -82,5 +142,7 @@ theme_override_font_sizes/font_size = 44
 theme_override_styles/normal = SubResource("StyleBoxFlat_loy4s")
 text = "Exit"
 
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/start" to="VBoxContainer/start" method="_on_pressed"]

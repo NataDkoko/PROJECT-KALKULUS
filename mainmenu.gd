@@ -2,6 +2,9 @@ extends Control
 
 func _on_start_button_pressed():
 	# Revisi: Pindah ke scene main.tscn
+	$StartButton/sfxklik.play()
+	await get_tree().create_timer(0.2).timeout
+	
 	get_tree().change_scene_to_file("res://map_selection.tscn")
 
 func _on_credit_button_pressed():
