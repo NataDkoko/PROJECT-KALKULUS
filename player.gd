@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @export var speed: float = 350.0
 @export var peluru_scene: PackedScene = preload("res://peluru_api.tscn")
-
+@onready var sprite_player = $AnimatedSprite2D
+@onready var shadow = $BayanganSprite
 @onready var muncung_senjata = $MuncungSenjata
 @onready var anim = $AnimatedSprite2D
 @onready var wadah_hati = get_tree().current_scene.find_child("WadahHati", true, false)
@@ -11,6 +12,43 @@ var max_darah: int = 3
 var darah_sekarang: int = 3
 
 var last_direction = Vector2.DOWN
+
+func _ready():
+	# 1. Bekukan pergerakan player
+	set_physics_process(false)
+	
+	# 2. Atur player jadi transparan DULU sebelum portal mulai
+	$AnimatedSprite2D.modulate.a = 0.0 # Alpha = 0 (tembus pandang)
+	$Senjata.modulate.a = 0.0
+	$AnimatedSprite2D.hide() 
+	$Senjata.hide()
+	$PortalEffect.modulate.a = 0.0
+	$PortalEffect.show()
+	
+	# 3. Mainkan animasi portal
+	var tween_portal_in = create_tween()
+	tween_portal_in.tween_property($PortalEffect, "modulate:a", 1.0, 1.0)
+	$PortalEffect.play("Portal")
+	var tween_portal_out = create_tween()
+	tween_portal_out.tween_property($PortalEffect, "modulate:a", 0.0, 0.5)
+	await $PortalEffect.animation_finished 
+	
+	# 4. Sembunyikan portal, dan mulai munculkan player (masih transparan)
+	$PortalEffect.hide() 
+	$AnimatedSprite2D.show() 
+	$Senjata.show()
+	# 5. Buat efek Fade-In dengan Tween
+	var tween = create_tween()
+	# Maksud kode di bawah: Ubah properti "modulate:a" milik $AnimatedSprite2D menjadi 1.0 dalam waktu 0.5 detik
+	tween.tween_property($AnimatedSprite2D, "modulate:a", 1.0, 0.5)
+	var tween_senjata = create_tween()
+	tween_senjata.tween_property($Senjata, "modulate:a", 1.0, 0.5)
+	
+	# Tunggu sampai efek fade-in selesai
+	await tween.finished
+	
+	# 6. Izinkan player bergerak lagi
+	set_physics_process(true)
 
 
 # =========================
@@ -54,6 +92,19 @@ func _physics_process(_delta):
 # DAMAGE SYSTEM
 # =========================
 func terima_damage(amount: int):
+	for i in range(3):
+		# 1. Ubah warna menjadi Merah Gelap (atau Hitam)
+		# Color(R, G, B) -> 1 adalah full, 0 adalah gelap
+		$AnimatedSprite2D.modulate = Color(0.8, 0.2, 0.2) 
+		
+		# Tunggu 0.1 detik
+		await get_tree().create_timer(0.1).timeout
+		
+		# 2. Kembalikan ke warna asli (Putih Murni = warna normal gambar)
+		$AnimatedSprite2D.modulate = Color(1, 1, 1)
+		
+		# Tunggu 0.1 detik lagi sebelum mengulang kelap-kelip
+		await get_tree().create_timer(0.1).timeout
 	var previous_darah = darah_sekarang
 	darah_sekarang -= amount
 

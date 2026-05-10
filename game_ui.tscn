@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cavtflp2rynqe"]
+
+[ext_resource type="Texture2D" uid="uid://bqexjkf4gybsl" path="res://asset/peluru/Snipe1.png" id="1_mj8uy"]
+[ext_resource type="PackedScene" uid="uid://dsk3gnkohnmx" path="res://hati_ui.tscn" id="2_3rlp6"]
+[ext_resource type="Script" uid="uid://brqwd85sp6nfe" path="res://score_label.gd" id="3_obik5"]
+
+[sub_resource type="Theme" id="Theme_5vw27"]
+
+[node name="UI" type="CanvasLayer" unique_id=1606197358]
+
+[node name="AmmoLabel" type="Label" parent="." unique_id=1216636376]
+visible = false
+anchors_preset = -1
+anchor_left = 1.0370001
+anchor_top = 1.0730001
+anchor_right = 1.0370001
+anchor_bottom = 1.0730001
+offset_left = -162.3601
+offset_top = -92.56006
+offset_right = 209.6399
+offset_bottom = 133.79993
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "AMMO 5/5"
+
+[node name="WadahPeluru" type="HBoxContainer" parent="." unique_id=629971421]
+anchors_preset = -1
+anchor_left = 0.86800003
+anchor_top = 0.84700006
+anchor_right = 0.86800003
+anchor_bottom = 0.84700006
+offset_left = -153.04004
+offset_top = -66.84003
+offset_right = 196.95996
+offset_bottom = 133.15997
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = -100
+
+[node name="TextureRect" type="TextureRect" parent="WadahPeluru" unique_id=591628040]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("1_mj8uy")
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="WadahPeluru" unique_id=896124286]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("1_mj8uy")
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="WadahPeluru" unique_id=322709980]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("1_mj8uy")
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="WadahPeluru" unique_id=1797991885]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("1_mj8uy")
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="WadahPeluru" unique_id=1593715576]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("1_mj8uy")
+stretch_mode = 4
+
+[node name="WadahHati" type="HBoxContainer" parent="." unique_id=707102452]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -168.0
+offset_top = 37.0
+offset_right = 2.0
+offset_bottom = 77.0
+grow_horizontal = 0
+theme_override_constants/separation = 25
+
+[node name="HatiUI" parent="WadahHati" unique_id=1776569186 instance=ExtResource("2_3rlp6")]
+layout_mode = 2
+
+[node name="HatiUI2" parent="WadahHati" unique_id=149270623 instance=ExtResource("2_3rlp6")]
+layout_mode = 2
+
+[node name="HatiUI3" parent="WadahHati" unique_id=1448696951 instance=ExtResource("2_3rlp6")]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=585651696]
+offset_left = -5.0
+offset_top = 7.0
+offset_right = 35.0
+offset_bottom = 62.0
+theme = SubResource("Theme_5vw27")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("3_obik5")

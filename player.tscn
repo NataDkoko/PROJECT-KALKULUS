@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://bewhdiw838gcj" path="res://asset/character/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up.png" id="4_b26j0"]
 [ext_resource type="Texture2D" uid="uid://crv5qyu32pxro" path="res://asset/character/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Run_Base/Run_Down.png" id="5_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dl2ff5bo0l27n" path="res://asset/character/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Run_Base/Run_Up.png" id="7_nvl01"]
+[ext_resource type="Texture2D" uid="uid://ded5ip3788yvi" path="res://asset/Portal/portal1_frame_1.png" id="9_606se"]
+[ext_resource type="Texture2D" uid="uid://b25pjj5khws07" path="res://asset/Portal/portal1_frame_2.png" id="10_u1c27"]
+[ext_resource type="Texture2D" uid="uid://cmmxqyctpupum" path="res://asset/Portal/portal1_frame_3.png" id="11_op7ga"]
+[ext_resource type="Texture2D" uid="uid://c85twtgpr278v" path="res://asset/Portal/portal1_frame_4.png" id="12_q13i1"]
+[ext_resource type="Texture2D" uid="uid://c3vpgni03mv1c" path="res://asset/Portal/portal1_frame_5.png" id="13_pylmc"]
+[ext_resource type="Texture2D" uid="uid://cd5gagde1jeg2" path="res://asset/Portal/portal1_frame_6.png" id="14_pbfsw"]
+[ext_resource type="Texture2D" uid="uid://dkv8v75ks5u0r" path="res://asset/Portal/portal1_frame_7.png" id="15_5tmop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("2_hqtel")
@@ -252,6 +259,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_606se"]
+offsets = PackedFloat32Array(0, 0.1264045, 0.39044943)
+colors = PackedColorArray(0.19298245, 0.19298245, 0.19298245, 0.80701756, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u1c27"]
+gradient = SubResource("Gradient_606se")
+width = 69
+height = 68
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(14, 16)
 
@@ -268,6 +287,98 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ahtn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q13i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q13i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q13i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5tmop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q13i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5tmop")
+}],
+"loop": false,
+"name": &"Portal",
+"speed": 14.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=1518018701 groups=["player"]]
 position = Vector2(321, 191)
 collision_layer = 2
@@ -279,6 +390,11 @@ position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_1jxqw")
 animation = &"idle_down"
 
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1326565275]
+position = Vector2(-1.0000014, 18.000004)
+scale = Vector2(1.040421, 0.32789505)
+texture = SubResource("GradientTexture2D_u1c27")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=972975160]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_hqtel")
@@ -288,15 +404,20 @@ position = Vector2(21, -20)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=965598969]
 position = Vector2(17, 0)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
 
 [node name="MuncungSenjata" type="Marker2D" parent="." unique_id=847041263]
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=418808256]
-visible = false
 position = Vector2(4.9999695, 8.999985)
 scale = Vector2(0.9224303, 0.68830127)
 color = Color(0.96862745, 0.90588236, 0.80784315, 1)
 energy = 0.49
 texture = SubResource("GradientTexture2D_sweqy")
 texture_scale = 1.95
+
+[node name="PortalEffect" type="AnimatedSprite2D" parent="." unique_id=1904262788]
+sprite_frames = SubResource("SpriteFrames_7ahtn")
+animation = &"Portal"
+frame = 6
+frame_progress = 1.0
