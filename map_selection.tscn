@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://cfurlhltyypqd"]
 
 [ext_resource type="Script" uid="uid://dvm5bfg85s71" path="res://map_selection.gd" id="1_frvc2"]
-[ext_resource type="Texture2D" uid="uid://b0tsdemqfm03i" path="res://asset/aset main_menu/SHADOW REALM Map Selection 111.png" id="2_kwys1"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2hebv"]
-texture = ExtResource("2_kwys1")
+[ext_resource type="Texture2D" uid="uid://bto3m2l1i2r5t" path="res://asset/title/ChoseMap.png" id="2_3qh5j"]
+[ext_resource type="Texture2D" uid="uid://c0yuruvjab6m0" path="res://asset/title/MapBox_Button.png" id="3_spraa"]
+[ext_resource type="Texture2D" uid="uid://b0fmnxbdf7kuj" path="res://asset/title/MapBox_Push.png" id="4_wwjl8"]
+[ext_resource type="Texture2D" uid="uid://drhoau6irc1b" path="res://asset/title/Maze.png" id="5_spraa"]
+[ext_resource type="Texture2D" uid="uid://c8x3n18li717h" path="res://asset/title/Coming_soon.png" id="6_6mmas"]
+[ext_resource type="Texture2D" uid="uid://di8t7204k6ol0" path="res://asset/title/Back_Button.png" id="6_nbua8"]
+[ext_resource type="Texture2D" uid="uid://dtsf8y15ce2vf" path="res://asset/title/NeonCity.png" id="7_2xn4j"]
+[ext_resource type="Texture2D" uid="uid://dfl2st2b4w8qp" path="res://asset/title/Back_Push.png" id="7_6mmas"]
 
 [node name="MapSelection" type="Control" unique_id=1009347338]
 layout_mode = 3
@@ -15,44 +19,107 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_frvc2")
 
-[node name="Panel" type="Panel" parent="." unique_id=1934966859]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1386669374]
+z_index = -10
 layout_mode = 0
-offset_right = 1287.0
-offset_bottom = 725.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_2hebv")
+offset_right = 1277.0
+offset_bottom = 715.0
+texture = ExtResource("2_3qh5j")
+expand_mode = 1
 
-[node name="Map1Button" type="Button" parent="." unique_id=898266052]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1097599351]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 446.0
-offset_right = 597.0
-offset_bottom = 483.0
-theme_override_colors/font_color = Color(0.0077786995, 0.38948533, 0.99999887, 1)
-text = "THE HOLOW MAZE
-"
-flat = true
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Map2Button" type="Button" parent="." unique_id=1839867202]
+[node name="Maplist" type="HBoxContainer" parent="." unique_id=1443851282]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 435.0
-offset_right = 932.0
-offset_bottom = 497.0
-theme_override_colors/font_color = Color(0.007843138, 0.3882353, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "NEON DISTRICT
-"
-flat = true
+offset_left = 67.0
+offset_top = 37.0
+offset_right = 107.0
+offset_bottom = 77.0
 
-[node name="BackButton" type="Button" parent="." unique_id=416651322]
+[node name="Map1" type="TextureButton" parent="." unique_id=1315780042]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 653.0
-offset_right = 187.0
-offset_bottom = 684.0
-text = "back
-"
+offset_left = 259.0
+offset_top = 197.0
+offset_right = 464.0
+offset_bottom = 468.0
+texture_normal = ExtResource("3_spraa")
+texture_pressed = ExtResource("4_wwjl8")
+texture_hover = ExtResource("4_wwjl8")
+ignore_texture_size = true
+stretch_mode = 0
 
-[connection signal="pressed" from="Map1Button" to="." method="_on_map_1_button_pressed"]
-[connection signal="pressed" from="Map2Button" to="." method="_on_map_2_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[node name="Maze" type="TextureRect" parent="Map1" unique_id=1807295995]
+z_index = -1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 49.0
+offset_right = 177.0
+offset_bottom = 242.0
+texture = ExtResource("5_spraa")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Map2" type="TextureButton" parent="." unique_id=50275534]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 200.0
+offset_right = 731.0
+offset_bottom = 471.0
+texture_normal = ExtResource("3_spraa")
+texture_pressed = ExtResource("4_wwjl8")
+texture_hover = ExtResource("4_wwjl8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Maze2" type="TextureRect" parent="Map2" unique_id=1980145194]
+z_index = -1
+layout_mode = 0
+offset_left = 29.0
+offset_top = 48.0
+offset_right = 174.0
+offset_bottom = 241.0
+texture = ExtResource("7_2xn4j")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Map3" type="TextureButton" parent="." unique_id=1597361227]
+layout_mode = 0
+offset_left = 794.0
+offset_top = 199.0
+offset_right = 999.0
+offset_bottom = 470.0
+texture_normal = ExtResource("3_spraa")
+texture_pressed = ExtResource("4_wwjl8")
+texture_hover = ExtResource("4_wwjl8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Maze2" type="TextureRect" parent="Map3" unique_id=1529634770]
+z_index = -1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 200.0
+offset_bottom = 257.0
+texture = ExtResource("6_6mmas")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Back" type="TextureButton" parent="." unique_id=905123330]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 609.0
+offset_right = 218.0
+offset_bottom = 692.0
+texture_normal = ExtResource("6_nbua8")
+texture_pressed = ExtResource("7_6mmas")
+texture_hover = ExtResource("7_6mmas")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Map1" to="." method="_on_map_1_button_pressed"]
+[connection signal="pressed" from="Map2" to="." method="_on_map_2_button_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_button_pressed"]

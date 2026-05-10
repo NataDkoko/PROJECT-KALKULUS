@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://bw26d6tdk4lp6"
 [autoload]
 
 Global="*uid://b0chqpgr2shmm"
+Transition="*uid://c1fhss43vtug2"
 Bgm="*uid://bw26d6tdk4lp6"
 
 [display]

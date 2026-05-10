@@ -115,27 +115,31 @@ func _physics_process(delta):
 
 # Fungsi untuk menerima damage dari peluru
 func take_damage(amount: int):
-	for i in range(3):
-		# 1. Ubah warna menjadi Merah Gelap (atau Hitam)
-		# Color(R, G, B) -> 1 adalah full, 0 adalah gelap
-		$AnimatedSprite2D.modulate = Color(0.8, 0.2, 0.2) 
-		
-		# Tunggu 0.1 detik
-		await get_tree().create_timer(0.1).timeout
-		
-		# 2. Kembalikan ke warna asli (Putih Murni = warna normal gambar)
-		$AnimatedSprite2D.modulate = Color(1, 1, 1)
-		
-		# Tunggu 0.1 detik lagi sebelum mengulang kelap-kelip
-		await get_tree().create_timer(0.1).timeoutw
+	# 1. Cek paling awal: Kalau udah mati, gak usah diproses lagi
 	if is_dead: 
-		return # Kalau udah mati, gak usah kena damage lagi
+		return 
 
+	# 2. Langsung kurangi darah detik itu juga
 	current_health -= amount
-	print("Musuh kena hit! Darah sisa: ", current_health) # Buat ngecek di output
+	print("Musuh kena hit! Darah sisa: ", current_health)
 	
+	# 3. Cek apakah pukulan ini bikin dia mati
 	if current_health <= 0:
 		die()
+	else:
+		# 4. JIKA BELUM MATI, baru jalankan animasi kelap-kelip merah
+		for i in range(3):
+			$AnimatedSprite2D.modulate = Color(0.8, 0.2, 0.2) 
+			await get_tree().create_timer(0.1).timeout
+			
+			# Kembalikan ke warna asli
+			$AnimatedSprite2D.modulate = Color(1, 1, 1)
+			
+			# Jika saat proses kedip ini tiba-tiba dia mati (kena hit beruntun), hentikan kedipnya
+			if is_dead:
+				break
+				
+			await get_tree().create_timer(0.1).timeout
 
 # Fungsi untuk proses mati
 func die():
