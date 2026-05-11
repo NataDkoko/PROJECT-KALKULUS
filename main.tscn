@@ -13,83 +13,110 @@ script = ExtResource("1_kek77")
 position = Vector2(-2, 3)
 
 [node name="Player" parent="." unique_id=1518018701 instance=ExtResource("2_0xm2m")]
-position = Vector2(669, 1235)
+position = Vector2(671, 1018)
 
 [node name="UI" parent="." unique_id=1606197358 instance=ExtResource("4_1bvp3")]
 
-[node name="SpawnPoints" type="Node2D" parent="." unique_id=1523685986]
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=2146880357]
 
-[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=2139505661]
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=420996547]
 position = Vector2(252, 39)
 
-[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=1026053290]
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=1757388108]
 position = Vector2(1210, 536)
 
-[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=1495660624]
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=1873333222]
 position = Vector2(1216, 803)
 
-[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=1935285461]
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=795923168]
 position = Vector2(1635, 776)
 
-[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" unique_id=1037789343]
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" unique_id=483377218]
 position = Vector2(1626, -217)
 
-[node name="Marker2D6" type="Marker2D" parent="SpawnPoints" unique_id=2013775406]
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints" unique_id=1646183598]
 position = Vector2(921, -226)
 
-[node name="Marker2D7" type="Marker2D" parent="SpawnPoints" unique_id=811745598]
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints" unique_id=1654656228]
 position = Vector2(681, -490)
 
-[node name="Marker2D8" type="Marker2D" parent="SpawnPoints" unique_id=291445734]
+[node name="Marker2D8" type="Marker2D" parent="SpawnPoints" unique_id=1309580068]
 position = Vector2(283, -463)
 
-[node name="Marker2D9" type="Marker2D" parent="SpawnPoints" unique_id=750889077]
+[node name="Marker2D9" type="Marker2D" parent="SpawnPoints" unique_id=1732846678]
 position = Vector2(-151, -242)
 
-[node name="Marker2D10" type="Marker2D" parent="SpawnPoints" unique_id=660586359]
+[node name="Marker2D10" type="Marker2D" parent="SpawnPoints" unique_id=1837848136]
 position = Vector2(389, 1023)
 
-[node name="Marker2D11" type="Marker2D" parent="SpawnPoints" unique_id=293020419]
+[node name="Marker2D11" type="Marker2D" parent="SpawnPoints" unique_id=930893702]
 position = Vector2(878, 832)
 
-[node name="Marker2D12" type="Marker2D" parent="SpawnPoints" unique_id=1069850363]
+[node name="Marker2D12" type="Marker2D" parent="SpawnPoints" unique_id=1237980423]
 position = Vector2(1216, 1031)
 
-[node name="Marker2D13" type="Marker2D" parent="SpawnPoints" unique_id=1956920847]
+[node name="Marker2D13" type="Marker2D" parent="SpawnPoints" unique_id=2146098008]
 position = Vector2(47, 784)
 
-[node name="Marker2D14" type="Marker2D" parent="SpawnPoints" unique_id=1513792458]
+[node name="Marker2D24" type="Marker2D" parent="SpawnPoints" unique_id=883222877]
+position = Vector2(551, 547)
+
+[node name="Marker2D25" type="Marker2D" parent="SpawnPoints" unique_id=793223153]
+position = Vector2(854, 307)
+
+[node name="Marker2D26" type="Marker2D" parent="SpawnPoints" unique_id=1979752507]
+position = Vector2(483, -126)
+
+[node name="Marker2D27" type="Marker2D" parent="SpawnPoints" unique_id=1214056756]
+position = Vector2(703, 32)
+
+[node name="Marker2D28" type="Marker2D" parent="SpawnPoints" unique_id=351761573]
+position = Vector2(1401, 44)
+
+[node name="Marker2D29" type="Marker2D" parent="SpawnPoints" unique_id=1701656235]
+position = Vector2(-151, 285)
+
+[node name="Marker2D30" type="Marker2D" parent="SpawnPoints" unique_id=1672244661]
+position = Vector2(-154, -757)
+
+[node name="Marker2D31" type="Marker2D" parent="SpawnPoints" unique_id=1994708256]
+position = Vector2(1161, -481)
+
+[node name="Marker2D32" type="Marker2D" parent="SpawnPoints" unique_id=1777691168]
+position = Vector2(500, -1102)
+
+[node name="Marker2D14" type="Marker2D" parent="SpawnPoints" unique_id=1111728760]
 position = Vector2(562, -756)
 
-[node name="Marker2D15" type="Marker2D" parent="SpawnPoints" unique_id=1603836821]
+[node name="Marker2D15" type="Marker2D" parent="SpawnPoints" unique_id=1959651620]
 position = Vector2(1349, -745)
 
-[node name="Marker2D16" type="Marker2D" parent="SpawnPoints" unique_id=1411452662]
+[node name="Marker2D16" type="Marker2D" parent="SpawnPoints" unique_id=1591303415]
 position = Vector2(1620, -717)
 
-[node name="Marker2D17" type="Marker2D" parent="SpawnPoints" unique_id=636634372]
+[node name="Marker2D17" type="Marker2D" parent="SpawnPoints" unique_id=1183188060]
 position = Vector2(949, -988)
 
-[node name="Marker2D18" type="Marker2D" parent="SpawnPoints" unique_id=225245236]
+[node name="Marker2D18" type="Marker2D" parent="SpawnPoints" unique_id=1455707662]
 position = Vector2(1305, -1514)
 
-[node name="Marker2D19" type="Marker2D" parent="SpawnPoints" unique_id=187196339]
+[node name="Marker2D19" type="Marker2D" parent="SpawnPoints" unique_id=229458466]
 position = Vector2(739, -1275)
 
-[node name="Marker2D20" type="Marker2D" parent="SpawnPoints" unique_id=314688836]
+[node name="Marker2D20" type="Marker2D" parent="SpawnPoints" unique_id=922609848]
 position = Vector2(472, -1493)
 
-[node name="Marker2D21" type="Marker2D" parent="SpawnPoints" unique_id=1653663533]
+[node name="Marker2D21" type="Marker2D" parent="SpawnPoints" unique_id=485495940]
 position = Vector2(282, -1028)
 
-[node name="Marker2D22" type="Marker2D" parent="SpawnPoints" unique_id=1420813810]
+[node name="Marker2D22" type="Marker2D" parent="SpawnPoints" unique_id=247958041]
 position = Vector2(-147, -1198)
 
-[node name="Marker2D23" type="Marker2D" parent="SpawnPoints" unique_id=665828087]
+[node name="Marker2D23" type="Marker2D" parent="SpawnPoints" unique_id=1813804893]
 position = Vector2(47, -1485)
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=174327195]
-wait_time = 5.0
+[node name="SpawnTimer" type="Timer" parent="." unique_id=752800700]
+wait_time = 8.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
