@@ -26,6 +26,39 @@ func _ready():
 	
 	agent.path_desired_distance = 4.0
 	agent.target_desired_distance = 2.0
+	
+	# 1. Bekukan pergerakan player
+	set_physics_process(false)
+	
+	# 2. Atur player jadi transparan DULU sebelum portal mulai
+	$AnimatedSprite2D.modulate.a = 0.0 # Alpha = 0 (tembus pandang)
+	$AnimatedSprite2D.hide() 
+	$PortalEffect.modulate.a = 0.0
+	$PortalEffect.show()
+	
+	# 3. Mainkan animasi portal
+	var tween_portal_in = create_tween()
+	tween_portal_in.tween_property($PortalEffect, "modulate:a", 1.0, 1.0)
+	$PortalEffect.play("PortalMusuh")
+	var tween_portal_out = create_tween()
+	tween_portal_out.tween_property($PortalEffect, "modulate:a", 0.0, 0.5)
+	await $PortalEffect.animation_finished 
+	
+	# 4. Sembunyikan portal, dan mulai munculkan player (masih transparan)
+	$PortalEffect.hide() 
+	$AnimatedSprite2D.show() 
+	# 5. Buat efek Fade-In dengan Tween
+	var tween = create_tween()
+	# Maksud kode di bawah: Ubah properti "modulate:a" milik $AnimatedSprite2D menjadi 1.0 dalam waktu 0.5 detik
+	tween.tween_property($AnimatedSprite2D, "modulate:a", 1.0, 0.5)
+	var tween_senjata = create_tween()
+	tween_senjata.tween_property($Senjata, "modulate:a", 1.0, 0.5)
+	
+	# Tunggu sampai efek fade-in selesai
+	await tween.finished
+	
+	# 6. Izinkan player bergerak lagi
+	set_physics_process(true)
 
 func _physics_process(delta):
 	# Ambil player sekali di awal
