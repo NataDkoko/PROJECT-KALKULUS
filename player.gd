@@ -131,15 +131,16 @@ func animasi_hati_hilang(index: int):
 func mati():
 	print("Player Mati!")
 	# 1. Muat (Load) scene Game Over ke dalam memori
-	Transition.change_scene("res://GameOverScreen.tscn")
-	var layar_game_over = load("res://GameOverScreen.tscn")
-	var instance = layar_game_over.instantiate()
-	
-	get_tree().root.add_child(instance)
+	var layar_game_over_baru = load("res://game_over_baru.tscn")
+	var instance = layar_game_over_baru.instantiate()
 	
 
 	# 3. Pause gamenya agar player dan musuh berhenti bergerak!
-	get_tree().paused = true
+	get_tree().paused = false
+	
+	get_tree().change_scene_to_file("res://game_over_baru.tscn")
+	
+	
 func tembak():
 	var peluru = peluru_scene.instantiate()
 
