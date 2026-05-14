@@ -8,6 +8,9 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_le4i1"]
 texture = ExtResource("2_60ukf")
 
+[sub_resource type="LabelSettings" id="LabelSettings_ohy6u"]
+font_size = 43
+
 [node name="game over" type="Control" unique_id=1082578156]
 layout_mode = 3
 anchors_preset = 15
@@ -25,22 +28,33 @@ offset_right = 1309.0
 offset_bottom = 732.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_le4i1")
 
+[node name="ScoreLabel" type="Label" parent="." unique_id=1956330291]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 260.0
+offset_right = 733.0
+offset_bottom = 429.0
+text = "Score
+"
+label_settings = SubResource("LabelSettings_ohy6u")
+vertical_alignment = 1
+
 [node name="tryagain" type="TextureButton" parent="." unique_id=1309861780]
 layout_mode = 0
-offset_left = 472.0
-offset_top = 292.0
-offset_right = 1508.109
-offset_bottom = 477.93735
+offset_left = 470.00003
+offset_top = 395.0
+offset_right = 1506.109
+offset_bottom = 580.9374
 scale = Vector2(0.3600007, 0.6400006)
 texture_normal = ExtResource("3_uj6dk")
 stretch_mode = 0
 
 [node name="mainmenu" type="TextureButton" parent="." unique_id=1581977501]
 layout_mode = 0
-offset_left = 475.00003
-offset_top = 409.00003
-offset_right = 1499.9979
-offset_bottom = 668.3748
+offset_left = 469.0
+offset_top = 495.0
+offset_right = 1493.9979
+offset_bottom = 754.37476
 scale = Vector2(0.3600007, 0.6400006)
 texture_normal = ExtResource("5_1ht0f")
 stretch_mode = 0
