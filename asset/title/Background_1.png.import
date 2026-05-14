@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sr7jbrqx4jmm"
-path="res://.godot/imported/Background_polos.png-b6f31e92b97c9bae8a83686b7b9746be.ctex"
+uid="uid://cioatc45qiddv"
+path="res://.godot/imported/Background_1.png-7de3ab566cb65258a0a3768dd7ed4a4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/credit/Background_polos.png"
-dest_files=["res://.godot/imported/Background_polos.png-b6f31e92b97c9bae8a83686b7b9746be.ctex"]
+source_file="res://asset/title/Background_1.png"
+dest_files=["res://.godot/imported/Background_1.png-7de3ab566cb65258a0a3768dd7ed4a4f.ctex"]
 
 [params]
 
