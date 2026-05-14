@@ -9,9 +9,96 @@
 [ext_resource type="Texture2D" uid="uid://e1a0f0e2fq7d" path="res://asset/title/Credit_Push.png" id="6_7uvds"]
 [ext_resource type="Texture2D" uid="uid://cktek4sxb8qr3" path="res://asset/title/Exit_Button.png" id="7_dihg0"]
 [ext_resource type="Texture2D" uid="uid://cc1v3rjmxqou3" path="res://asset/title/Exit_Push.png" id="8_rqglp"]
+[ext_resource type="Texture2D" uid="uid://5rxamh0ifj4t" path="res://asset/credit/Tittle_2.png" id="10_qrn07"]
+[ext_resource type="Texture2D" uid="uid://bbnit64hd4ysu" path="res://asset/credit/title_3.png" id="11_lidg2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgsso"]
 texture = ExtResource("2_d2nv2")
+
+[sub_resource type="Animation" id="Animation_raimv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tittle_1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(288, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tittle_2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tittle_2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qy7ti"]
+resource_name = "animasi_tittle"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tittle_1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(288, -200), Vector2(288, 58)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tittle_2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.20666665, 1.2333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tittle_2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2633331, 1.7299998, 4.363333, 4.8, 7.5999994, 8.066667, 10.7, 11.136667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5i8j"]
+_data = {
+&"RESET": SubResource("Animation_raimv"),
+&"animasi_tittle": SubResource("Animation_qy7ti")
+}
 
 [node name="Mainmenu" type="Control" unique_id=1444903445]
 layout_mode = 3
@@ -82,6 +169,31 @@ texture_pressed = ExtResource("8_rqglp")
 texture_hover = ExtResource("8_rqglp")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="tittle_1" type="TextureRect" parent="." unique_id=1087908599]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -200.0
+offset_right = 989.0
+offset_bottom = 85.0
+texture = ExtResource("10_qrn07")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="tittle_2" type="TextureRect" parent="." unique_id=474650596]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 288.0
+offset_top = 58.0
+offset_right = 989.0
+offset_bottom = 343.0
+texture = ExtResource("11_lidg2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2135144409]
+libraries/ = SubResource("AnimationLibrary_y5i8j")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CreditButton2" to="." method="_on_credit_button_pressed"]

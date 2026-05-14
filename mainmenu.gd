@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	$AnimationPlayer.play("animasi_tittle")
+
 func _on_start_button_pressed():
 	# Revisi: Pindah ke scene main.tscn
 	$StartButton/sfxklik.play()
