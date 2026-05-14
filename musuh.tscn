@@ -5,10 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://djqja534cel8x" path="res://asset/character/MUSUH/Death-Sheet.png" id="3_dihok"]
 [ext_resource type="Texture2D" uid="uid://b0r80xvjj1kmj" path="res://asset/character/MUSUH/Run-Sheet.png" id="3_vupbr"]
 [ext_resource type="AudioStream" uid="uid://bi5njqek84vdk" path="res://asset/sfx/Piglin_death2.ogg.mp3" id="5_1vf1i"]
+[ext_resource type="Texture2D" uid="uid://bjb3kaqarerqg" path="res://asset/Portal/Dimensional_Portal.png" id="6_iexml"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vf1i"]
-radius = 62.31198
-height = 124.62396
+radius = 46.05809
+height = 92.11618
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vupbr"]
 atlas = ExtResource("2_mgojx")
@@ -153,8 +154,103 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dihok"]
-radius = 37.654926
-height = 75.504456
+radius = 25.31309
+height = 50.62618
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ufyx"]
+atlas = ExtResource("6_iexml")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ygi"]
+atlas = ExtResource("6_iexml")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g8jn"]
+atlas = ExtResource("6_iexml")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwtvp"]
+atlas = ExtResource("6_iexml")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37v57"]
+atlas = ExtResource("6_iexml")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy61r"]
+atlas = ExtResource("6_iexml")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rwm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ufyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwtvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37v57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy61r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ufyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwtvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37v57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy61r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ufyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwtvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37v57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy61r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ufyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8jn")
+}],
+"loop": false,
+"name": &"PortalMusuh",
+"speed": 5.0
+}]
 
 [node name="musuh" type="CharacterBody2D" unique_id=719829037]
 rotation = 0.17831278
@@ -190,7 +286,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1839072368]
-position = Vector2(-0.27466702, 4.113947)
+position = Vector2(-1.7909195, 1.3388829)
 shape = SubResource("CapsuleShape2D_dihok")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=147839313]
@@ -198,6 +294,15 @@ collision_mask = 3
 
 [node name="SFXMati" type="AudioStreamPlayer2D" parent="." unique_id=211795269]
 stream = ExtResource("5_1vf1i")
+
+[node name="PortalEffect" type="AnimatedSprite2D" parent="." unique_id=1607874247]
+position = Vector2(-7.8789845, 6.3391876)
+rotation = -0.15882497
+scale = Vector2(1.4672414, 1.3024677)
+sprite_frames = SubResource("SpriteFrames_7rwm2")
+animation = &"PortalMusuh"
+frame = 4
+frame_progress = 1.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

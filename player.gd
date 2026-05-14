@@ -134,6 +134,7 @@ func mati():
 	var layar_game_over_baru = load("res://game_over_baru.tscn")
 	var instance = layar_game_over_baru.instantiate()
 	
+
 	# 3. Pause gamenya agar player dan musuh berhenti bergerak!
 	get_tree().paused = false
 	
