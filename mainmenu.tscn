@@ -84,4 +84,5 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CreditButton2" to="." method="_on_credit_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
