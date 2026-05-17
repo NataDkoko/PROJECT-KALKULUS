@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0r80xvjj1kmj" path="res://asset/character/MUSUH/Run-Sheet.png" id="3_vupbr"]
 [ext_resource type="AudioStream" uid="uid://bi5njqek84vdk" path="res://asset/sfx/Piglin_death2.ogg.mp3" id="5_1vf1i"]
 [ext_resource type="Texture2D" uid="uid://bjb3kaqarerqg" path="res://asset/Portal/Dimensional_Portal.png" id="6_iexml"]
+[ext_resource type="AudioStream" uid="uid://q37oo1evsoat" path="res://asset/sfx/portalmusuhsfx.ogg" id="7_5ark8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vf1i"]
 radius = 46.05809
@@ -303,6 +304,10 @@ sprite_frames = SubResource("SpriteFrames_7rwm2")
 animation = &"PortalMusuh"
 frame = 4
 frame_progress = 1.0
+
+[node name="SfxEnemySpawn" type="AudioStreamPlayer2D" parent="PortalEffect" unique_id=93173327]
+stream = ExtResource("7_5ark8")
+max_distance = 512.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

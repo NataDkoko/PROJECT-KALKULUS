@@ -8,10 +8,11 @@ func _on_start_button_pressed():
 	$StartButton/sfxklik.play()
 	await get_tree().create_timer(0.2).timeout
 	
-	Transition.change_scene("res://map_selection.tscn")
+	Transition.change_scene("res://main.tscn")
 
 func _on_credit_button_pressed():
 	# Untuk sementara kita cetak pesan dulu di konsol
+	$StartButton/sfxklik.play()
 	await get_tree().create_timer(0.2).timeout
 	
 	Transition.change_scene("res://credits.tscn")
@@ -19,4 +20,5 @@ func _on_credit_button_pressed():
 
 func _on_exit_button_pressed():
 	# Fungsi untuk menutup game
+	$StartButton/sfxklik.play()
 	get_tree().quit()

@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+const ITEM_HATI = preload("res://item_hati.tscn")
+@export var peluang_drop = 0.20 
 @export var speed_jalan: float = 10.0
 @export var speed: float = 120.0
 @export var acceleration: float = 6.0
@@ -8,6 +11,7 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var nav_agent = $NavigationAgent2D
 @onready var ray_cast_2d = $RayCast2D
+@onready var sfx_enemy_spawn = $PortalEffect/SfxEnemySpawn
 
 var current_health: int
 var player: Node2D
@@ -27,37 +31,44 @@ func _ready():
 	agent.path_desired_distance = 4.0
 	agent.target_desired_distance = 2.0
 	
-	# 1. Bekukan pergerakan player
+	# 1. Bekukan pergerakan musuh
 	set_physics_process(false)
 	
-	# 2. Atur player jadi transparan DULU sebelum portal mulai
-	$AnimatedSprite2D.modulate.a = 0.0 # Alpha = 0 (tembus pandang)
+	# 2. Atur musuh jadi transparan DULU sebelum portal mulai
+	$AnimatedSprite2D.modulate.a = 0.0 
 	$AnimatedSprite2D.hide() 
 	$PortalEffect.modulate.a = 0.0
 	$PortalEffect.show()
 	
-	# 3. Mainkan animasi portal
+	# 3. Mainkan animasi portal dan suaranya secara bersamaan
+	$PortalEffect.play("PortalMusuh")
+	 # Pastikan namanya sudah SfxEnemySpawn dan file sudah di-save
+	$PortalEffect/SfxEnemySpawn.play()
+	# FADE-IN PORTAL: Munculkan portal (0 ke 1)
 	var tween_portal_in = create_tween()
 	tween_portal_in.tween_property($PortalEffect, "modulate:a", 1.0, 1.0)
-	$PortalEffect.play("PortalMusuh")
-	var tween_portal_out = create_tween()
-	tween_portal_out.tween_property($PortalEffect, "modulate:a", 0.0, 0.5)
+	
+	# Tunggu sampai animasi gambar portalnya benar-benar selesai
 	await $PortalEffect.animation_finished 
 	
-	# 4. Sembunyikan portal, dan mulai munculkan player (masih transparan)
+	# FADE-OUT PORTAL: Pudarkan portal (1 ke 0) setelah animasi selesai
+	var tween_portal_out = create_tween()
+	tween_portal_out.tween_property($PortalEffect, "modulate:a", 0.0, 0.5)
+	await tween_portal_out.finished # Tunggu sampai portalnya benar-benar hilang
+	
+	# 4. Sembunyikan portal, dan mulai munculkan node musuhnya
 	$PortalEffect.hide() 
 	$AnimatedSprite2D.show() 
-	# 5. Buat efek Fade-In dengan Tween
-	var tween = create_tween()
-	# Maksud kode di bawah: Ubah properti "modulate:a" milik $AnimatedSprite2D menjadi 1.0 dalam waktu 0.5 detik
-	tween.tween_property($AnimatedSprite2D, "modulate:a", 1.0, 0.5)
-	var tween_senjata = create_tween()
-	tween_senjata.tween_property($Senjata, "modulate:a", 1.0, 0.5)
 	
-	# Tunggu sampai efek fade-in selesai
+	# 5. Buat efek Fade-In untuk Musuh dan Senjata secara bersamaan (Parallel)
+	var tween = create_tween()
+	tween.tween_property($AnimatedSprite2D, "modulate:a", 1.0, 0.5)
+	tween.parallel().tween_property($Senjata, "modulate:a", 1.0, 0.5)
+	
+	# Tunggu sampai efek fade-in musuh selesai
 	await tween.finished
 	
-	# 6. Izinkan player bergerak lagi
+	# 6. Izinkan musuh bergerak lagi
 	set_physics_process(true)
 
 func _physics_process(delta):
@@ -176,26 +187,32 @@ func take_damage(amount: int):
 
 # Fungsi untuk proses mati
 func die():
-	if is_dead: return # Cek agar skor tidak nambah dua kali
+	if is_dead: return
 	is_dead = true
 	
 	Global.score += 100
 	print("Skor bertambah! Total: ", Global.score)
 	
-	velocity = Vector2.ZERO # Berhenti bergerak
+	velocity = Vector2.ZERO
 	
-	# Matikan tabrakan biar player gak nabrak "mayat" musuh
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	# Mainkan animasi mati
-	sprite.play("mati") 
+	sprite.play("mati")
 	$SFXMati.play()
 	
 	await $SFXMati.finished
-	
-	# Tunggu sampai animasi mati selesai dimainkan, baru hapus musuh dari game
 	await sprite.animation_finished
-	queue_free() 
+	
+	# Cek peluang drop hati SEBELUM queue_free
+	if randf() <= peluang_drop:
+		drop_hati()
+	
+	queue_free()
+
+func drop_hati():
+	var hati = ITEM_HATI.instantiate()
+	hati.global_position = global_position
+	get_tree().current_scene.add_child(hati)
 
 func update_animation():
 	if is_dead:

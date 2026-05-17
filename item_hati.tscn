@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cnpr1q7clfrx7"]
+
+[ext_resource type="Texture2D" uid="uid://dp0q33d12a6et" path="res://asset/healt/hati1.png" id="1_kt45e"]
+[ext_resource type="Script" uid="uid://dgdciflllb2f8" path="res://item_hati.gd" id="1_mnpv4"]
+
+[sub_resource type="Gradient" id="Gradient_606se"]
+offsets = PackedFloat32Array(0, 0.1264045, 0.39044943)
+colors = PackedColorArray(0.19298245, 0.19298245, 0.19298245, 0.80701756, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnpv4"]
+gradient = SubResource("Gradient_606se")
+width = 69
+height = 68
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnpv4"]
+radius = 10.198039
+
+[node name="ItemHati" type="Area2D" unique_id=1450875621]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_mnpv4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2025274227]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.907, 1)
+texture = ExtResource("1_kt45e")
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=134021580]
+position = Vector2(4.7683716e-07, 14)
+scale = Vector2(0.68279994, 0.24373853)
+texture = SubResource("GradientTexture2D_mnpv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714267263]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_mnpv4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

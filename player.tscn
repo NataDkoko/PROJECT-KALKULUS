@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://c3vpgni03mv1c" path="res://asset/Portal/portal1_frame_5.png" id="13_pylmc"]
 [ext_resource type="Texture2D" uid="uid://cd5gagde1jeg2" path="res://asset/Portal/portal1_frame_6.png" id="14_pbfsw"]
 [ext_resource type="Texture2D" uid="uid://dkv8v75ks5u0r" path="res://asset/Portal/portal1_frame_7.png" id="15_5tmop"]
+[ext_resource type="AudioStream" uid="uid://8oe18lh578qg" path="res://asset/sfx/portalplayersfx.ogg" id="16_q13i1"]
+[ext_resource type="AudioStream" uid="uid://cgal3eamk2grb" path="res://asset/sfx/HatiSfx.ogg" id="16_u1c27"]
+[ext_resource type="AudioStream" uid="uid://cuu2pbgepgtbx" path="res://asset/sfx/StepSfx.ogg" id="17_op7ga"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("2_hqtel")
@@ -259,13 +262,13 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_606se"]
+[sub_resource type="Gradient" id="Gradient_op7ga"]
 offsets = PackedFloat32Array(0, 0.1264045, 0.39044943)
 colors = PackedColorArray(0.19298245, 0.19298245, 0.19298245, 0.80701756, 0, 0, 0, 1, 0, 0, 0, 0)
 metadata/_snap_count = 2
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u1c27"]
-gradient = SubResource("Gradient_606se")
+gradient = SubResource("Gradient_op7ga")
 width = 69
 height = 68
 fill = 1
@@ -421,3 +424,13 @@ sprite_frames = SubResource("SpriteFrames_7ahtn")
 animation = &"Portal"
 frame = 6
 frame_progress = 1.0
+
+[node name="SfxPlayerSpawn" type="AudioStreamPlayer2D" parent="PortalEffect" unique_id=471658992]
+stream = ExtResource("16_q13i1")
+autoplay = true
+
+[node name="SfxAmbilHati" type="AudioStreamPlayer2D" parent="." unique_id=1110777373]
+stream = ExtResource("16_u1c27")
+
+[node name="SfxJalan" type="AudioStreamPlayer2D" parent="." unique_id=4863891]
+stream = ExtResource("17_op7ga")
