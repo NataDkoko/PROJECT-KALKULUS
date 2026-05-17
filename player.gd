@@ -146,7 +146,6 @@ func animasi_hati_hilang(index: int):
 
 func mati():
 	print("Player Mati!")
-	Global.score = 0
 	# 1. Muat (Load) scene Game Over ke dalam memori
 	var layar_game_over_baru = load("res://game_over_baru.tscn")
 	var instance = layar_game_over_baru.instantiate()

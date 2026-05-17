@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const ITEM_HATI = preload("res://item_hati.tscn")
-@export var peluang_drop = 0.20 
+@export var peluang_drop = 0.25
 @export var speed_jalan: float = 10.0
 @export var speed: float = 120.0
 @export var acceleration: float = 6.0
@@ -42,7 +42,6 @@ func _ready():
 	
 	# 3. Mainkan animasi portal dan suaranya secara bersamaan
 	$PortalEffect.play("PortalMusuh")
-	 # Pastikan namanya sudah SfxEnemySpawn dan file sudah di-save
 	$PortalEffect/SfxEnemySpawn.play()
 	# FADE-IN PORTAL: Munculkan portal (0 ke 1)
 	var tween_portal_in = create_tween()

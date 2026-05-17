@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j6beo"]
 resource_name = "scroll_animation"
-length = 15.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,10 +30,10 @@ tracks/0/path = NodePath("ScrollContainer/VBoxContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 15),
+"times": PackedFloat32Array(0, 29.966667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(234, 617), Vector2(234, -550)]
+"values": [Vector2(234, 617), Vector2(234, -800)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4av4j"]
@@ -67,7 +67,7 @@ layout_mode = 0
 offset_left = 234.0
 offset_top = 617.0
 offset_right = 1142.0
-offset_bottom = 1409.0
+offset_bottom = 1941.0
 alignment = 1
 
 [node name="TiitleGame" type="TextureRect" parent="ScrollContainer/VBoxContainer" unique_id=1642675645]
