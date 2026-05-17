@@ -7,13 +7,17 @@ extends CharacterBody2D
 @onready var muncung_senjata = $MuncungSenjata
 @onready var anim = $AnimatedSprite2D
 @onready var wadah_hati = get_tree().current_scene.find_child("WadahHati", true, false)
+@onready var sfx_ambil_hati = $SfxAmbilHati
+@onready var sfx_jalan = $SfxJalan
+@export var jeda_langkah: float = 0.35 # Berapa detik sekali suara langkah berbunyi
 
 var max_darah: int = 3
 var darah_sekarang: int = 3
-
+var timer_langkah: float = 0.0
 var last_direction = Vector2.DOWN
 
 func _ready():
+	
 	# 1. Bekukan pergerakan player
 	set_physics_process(false)
 	
@@ -86,11 +90,23 @@ func _physics_process(_delta):
 
 	velocity = direction * speed
 	move_and_slide()
-
+	# Cek apakah player sedang bergerak di map
+	if velocity != Vector2.ZERO:
+		# Kurangi timer berdasarkan waktu berjalan (delta)
+		timer_langkah -= _delta
+		
+		# Jika timer habis, bunyikan suara dan reset timernya
+		if timer_langkah <= 0:
+			if sfx_jalan:
+				sfx_jalan.play()
+			timer_langkah = jeda_langkah
+	else:
+		# Jika player diam, reset timer agar saat jalan lagi suaranya langsung bunyi
+		timer_langkah = 0.0
 
 # =========================
 # DAMAGE SYSTEM
-# =========================
+# =========================sa
 func terima_damage(amount: int):
 	for i in range(3):
 		# 1. Ubah warna menjadi Merah Gelap (atau Hitam)
@@ -130,6 +146,7 @@ func animasi_hati_hilang(index: int):
 
 func mati():
 	print("Player Mati!")
+	Global.score = 0
 	# 1. Muat (Load) scene Game Over ke dalam memori
 	var layar_game_over_baru = load("res://game_over_baru.tscn")
 	var instance = layar_game_over_baru.instantiate()
@@ -149,3 +166,27 @@ func tembak():
 
 	get_tree().current_scene.add_child(peluru)
 	
+func tambah_darah(amount: int):
+	if darah_sekarang > max_darah:
+		return
+	if sfx_ambil_hati:
+		sfx_ambil_hati.play()
+	var previous_darah = darah_sekarang
+	darah_sekarang += amount
+	if darah_sekarang > max_darah:
+		darah_sekarang = max_darah
+	print("Darah bertambah! Nyawa sekarang: ", darah_sekarang)
+	for i in range(previous_darah, darah_sekarang):
+		animasi_hati_tambah(i)
+
+func animasi_hati_tambah(index: int):
+	if wadah_hati:
+		var daftar_hati = wadah_hati.get_children()
+
+		if index >= 0 and index < daftar_hati.size():
+			var hati_node = daftar_hati[index]
+
+			# Panggil fungsi di script hati untuk mengembalikan tampilannya menjadi penuh
+			# SAYA ASUMSIKAN namanya "mainkan_animasi_pulih". Kamu bisa ganti namanya sesuai di script hatimu.
+			if hati_node.has_method("mainkan_animasi_pulih"):
+				hati_node.mainkan_animasi_pulih()

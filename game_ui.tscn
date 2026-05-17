@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqexjkf4gybsl" path="res://asset/peluru/Snipe1.png" id="1_mj8uy"]
 [ext_resource type="PackedScene" uid="uid://dsk3gnkohnmx" path="res://hati_ui.tscn" id="2_3rlp6"]
+[ext_resource type="FontFile" uid="uid://bsiv8ebtpbsp6" path="res://asset/font/Minecraft.ttf" id="3_3rlp6"]
 [ext_resource type="Script" uid="uid://brqwd85sp6nfe" path="res://score_label.gd" id="3_obik5"]
 
 [sub_resource type="Theme" id="Theme_5vw27"]
@@ -90,10 +91,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=585651696]
-offset_left = -5.0
-offset_top = 7.0
-offset_right = 35.0
-offset_bottom = 62.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 66.0
 theme = SubResource("Theme_5vw27")
+theme_override_fonts/font = ExtResource("3_3rlp6")
 theme_override_font_sizes/font_size = 40
 script = ExtResource("3_obik5")

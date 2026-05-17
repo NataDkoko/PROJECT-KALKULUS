@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bppsl4qwvoxnx" path="res://asset/title/Start_Button.png" id="3_7uvds"]
 [ext_resource type="Texture2D" uid="uid://dfly1xdvt8137" path="res://asset/title/Start_push.png" id="4_3pujl"]
 [ext_resource type="Texture2D" uid="uid://cdtxiusvn7in3" path="res://asset/title/Credit_Button.png" id="5_7uvds"]
-[ext_resource type="AudioStream" uid="uid://bqmw2if6xkrdn" path="res://asset/sfx/ButtonSFX.wav" id="5_rqglp"]
+[ext_resource type="AudioStream" uid="uid://daw7ikjyj4aj5" path="res://asset/sfx/Stone_dig4.ogg" id="5_qrn07"]
 [ext_resource type="Texture2D" uid="uid://e1a0f0e2fq7d" path="res://asset/title/Credit_Push.png" id="6_7uvds"]
 [ext_resource type="Texture2D" uid="uid://cktek4sxb8qr3" path="res://asset/title/Exit_Button.png" id="7_dihg0"]
 [ext_resource type="Texture2D" uid="uid://cc1v3rjmxqou3" path="res://asset/title/Exit_Push.png" id="8_rqglp"]
@@ -140,7 +140,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="sfxklik" type="AudioStreamPlayer" parent="StartButton" unique_id=1070234560]
-stream = ExtResource("5_rqglp")
+stream = ExtResource("5_qrn07")
 
 [node name="CreditButton2" type="TextureButton" parent="." unique_id=1850983061]
 custom_minimum_size = Vector2(1, 1)
@@ -156,6 +156,9 @@ texture_hover = ExtResource("6_7uvds")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="sfxklik" type="AudioStreamPlayer" parent="CreditButton2" unique_id=1563526912]
+stream = ExtResource("5_qrn07")
+
 [node name="ExitButton" type="TextureButton" parent="." unique_id=1419673178]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 0
@@ -169,6 +172,9 @@ texture_pressed = ExtResource("8_rqglp")
 texture_hover = ExtResource("8_rqglp")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="sfxklik" type="AudioStreamPlayer" parent="ExitButton" unique_id=129542790]
+stream = ExtResource("5_qrn07")
 
 [node name="tittle_1" type="TextureRect" parent="." unique_id=1087908599]
 layout_mode = 0
